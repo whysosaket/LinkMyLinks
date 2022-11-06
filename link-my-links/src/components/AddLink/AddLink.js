@@ -6,6 +6,9 @@ import "./AddLink.css";
 const AddLink = () => {
 
 
+  const handleClick = ()=>{
+    console.log("Clicked");
+  }
   return (
     <> 
     <div>
@@ -15,7 +18,7 @@ const AddLink = () => {
           <div>
             <div className="form-outline form-white">
               <input type="text" id="formWhite" className="form-control" placeholder="Add a Link" />
-              <span className="hide-mob">
+              <span className="hide-mob" onClick={handleClick}>
                 <Button text="Add Link" />
               </span>
             </div>
