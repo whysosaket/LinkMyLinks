@@ -1,10 +1,10 @@
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 import About from './components/About/About';
 import Home from './components/Home/Home';
 import Lists from './components/Lists/Lists';
+import AddLink from "./components/AddLink/AddLink";
 
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
             <Route path="/about" element={<About />}></Route>
           </Routes>
         </div>
+        <AddLink />
       </Router>
     </div>
   );
