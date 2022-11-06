@@ -3,9 +3,10 @@ import './Round.css'
 import './Position.css'
 
 const ButtonRound = () => {
+
   return (
     <>
-      <button className="glow-on-hover round show-mob right-bottom">
+      <button className="glow-on-hover round show-mob right-bottom unselectable">
         <span className="round-plus">+</span>
       </button>
     </> 

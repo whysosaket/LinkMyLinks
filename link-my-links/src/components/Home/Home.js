@@ -1,9 +1,10 @@
 import React from 'react'
+import AddLink from "../AddLink/AddLink";
 
 const Home = () => {
   return (
     <div>
-      Home
+      <AddLink />
       </div>
   )
 }

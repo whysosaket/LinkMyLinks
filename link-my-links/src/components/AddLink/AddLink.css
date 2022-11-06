@@ -16,9 +16,6 @@
   display: none;
 }
 
-.border{
-  border: 0;
-}
 
 @media (max-aspect-ratio: 9/10) {
   .hide-mob{
