@@ -1,10 +1,40 @@
 .form-control {
   display: inline-block;
-  width: auto;
+  width: 50%;
+  margin: 0 3rem;
 }
 
+.form-outline.form-white{
+  width: 45rem;
+}
 
-.addtask{
+.addtask {
+  height: 8rem;
+}
 
-    height: 8rem;
-    }
+.show-mob{
+  display: none;
+}
+
+.border{
+  border: 0;
+}
+
+@media (max-aspect-ratio: 9/10) {
+  .hide-mob{
+    display: none;
+  }
+
+  .form-control{
+    width: 100%;
+    margin: 0;
+  }
+
+  .form-outline.form-white{
+    width: auto;
+  }
+
+  .show-mob{
+    display: inline-block;
+  }
+}
