@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../Button/Button";
 import './Login.css'
 import '../../Glow.css'
-import Footer from "../Footer/Footer";
 
 const Login = () => {
 
