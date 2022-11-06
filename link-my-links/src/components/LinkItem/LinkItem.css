@@ -6,12 +6,12 @@
 }
 
 .link-item {
-  margin: 2rem 0.5rem;
+  margin: 1rem 0.5rem;
   padding: 2rem;
   max-width: 40%;
   display: inline-block;
   border: 1px black solid;
-  border-radius: 28px;
+  border-radius: 20px;
   text-align: left;
 }
 
@@ -42,5 +42,6 @@
     .link-item{
         max-width: 100%;
         display: block;
+        margin: 2rem 0.5rem;
     }
 }

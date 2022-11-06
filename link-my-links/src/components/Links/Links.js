@@ -4,6 +4,8 @@ import './Links.css'
 
 const Links = () => {
   return (
+    <>
+    <h2 className='in-links'>Default List</h2>
     <div className='links'>
         <LinkItem />
         <LinkItem />
@@ -11,6 +13,7 @@ const Links = () => {
         <LinkItem />
         <LinkItem />
     </div>
+    </>
   )
 }
 

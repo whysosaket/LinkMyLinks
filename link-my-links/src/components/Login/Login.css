@@ -31,7 +31,7 @@
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgb(217, 227, 255);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -39,7 +39,7 @@
     font-weight: 300;
 }
 ::placeholder{
-    color: #cecdcd;
+    color: #7b7b7b;
 }
 .login button{
     margin-top: 50px;

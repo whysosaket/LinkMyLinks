@@ -1,5 +1,14 @@
 .links{
     margin-bottom: 15rem;
-    margin-top: 2rem;
+    margin-top: -2rem;
+}
 
+h2.in-links{
+    margin: 2rem 1rem;
+}
+
+@media (max-aspect-ratio: 9/10){
+    .links{
+        margin-top: 0;
+    }
 }
