@@ -1,6 +1,6 @@
 
 .glow-on-hover {
-    width: 10rem;
+    min-width: 30%;
     height: 3rem;
     border: none;
     outline: none;
@@ -57,17 +57,6 @@
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
-}
-
-/* the below code is for glowig text */
-
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073, 0 0 25px #e60073, 0 0 30px #e60073, 0 0 35px #e60073;
-  }
-  to {
-    text-shadow: 0 0 10px #fff, 0 0 15px #ff4da6, 0 0 20px #ff4da6, 0 0 25px #ff4da6, 0 0 30px #ff4da6, 0 0 35px #ff4da6, 0 0 40px #ff4da6;
-  }
 }
 
 

@@ -1,0 +1,46 @@
+/*This is for the Link Item*/
+
+.links-section {
+  margin: 2rem 1rem;
+  display: inline block;
+}
+
+.link-item {
+  margin: 2rem 0.5rem;
+  padding: 2rem;
+  max-width: 40%;
+  display: inline-block;
+  border: 1px black solid;
+  border-radius: 28px;
+  text-align: left;
+}
+
+.link-item p {
+  font-size: 0.8rem;
+  color: darkgrey;
+}
+
+.button-section {
+  display: block;
+  width: 100%;
+}
+
+.space {
+  margin-right: 2rem;
+}
+
+.cross {
+  color: red;
+}
+
+.edit {
+  color: rgb(40, 40, 40);
+}
+
+
+@media (max-aspect-ratio: 9/10){
+    .link-item{
+        max-width: 100%;
+        display: block;
+    }
+}
