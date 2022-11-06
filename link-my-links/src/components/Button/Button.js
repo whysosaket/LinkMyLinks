@@ -4,7 +4,9 @@ import './Button.css'
 const Button = (props) => {
   return (
     <>
-      <button className="glow-on-hover unselectable">
+      <button onClick={(event)=>{
+        event.preventDefault();
+      }} className="glow-on-hover unselectable">
         {props.text}
       </button>
     </>
