@@ -2,12 +2,13 @@ import React from "react";
 import Button from "../Button/Button";
 import './Login.css'
 import '../../Glow.css'
+import Footer from "../Footer/Footer";
 
 const Login = () => {
 
   return (
     <>
-    <div className="center-item">
+    <div className="center-item v-align">
     <div className="login glow-animate">
       <form>
         <h3>Login Here</h3>
@@ -18,10 +19,12 @@ const Login = () => {
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" />
 
-        <Button text="Login" />
+        <div className="center-item"> <Button text="Login" /></div>
+       
     </form>
     </div>
     </div>
+    <Footer />
     </>
   )
 }

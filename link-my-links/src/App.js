@@ -4,9 +4,11 @@ import About from './components/About/About';
 import Home from './components/Home/Home';
 import Lists from './components/Lists/Lists';
 import Login from "./components/Login/Login";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
+  
   return (
       <Router>
         <Navbar />
@@ -18,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
           </Routes>
         </div>
+        <Footer />
       </Router>
   );
 }

@@ -28,6 +28,9 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.v-align{
   margin: 5rem;
 }
 
