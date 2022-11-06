@@ -11,6 +11,7 @@ function App() {
   
   return (
       <Router>
+        <div className="mainContainer">
         <Navbar />
         <div>
           <Routes>
@@ -21,6 +22,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        </div>
       </Router>
   );
 }

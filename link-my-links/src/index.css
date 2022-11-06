@@ -34,6 +34,10 @@ code {
   margin: 5rem;
 }
 
+
+
 @media (max-aspect-ratio: 8/10) {
-  
+  .mainContainer{
+    margin-bottom: 1rem;
+  }
 }
