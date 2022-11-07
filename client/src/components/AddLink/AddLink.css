@@ -17,7 +17,7 @@
 }
 
 
-@media (max-aspect-ratio: 9/10) {
+@media (max-aspect-ratio: 11/10) {
   .hide-mob{
     display: none;
   }
