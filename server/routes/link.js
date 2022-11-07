@@ -11,11 +11,19 @@ const fetchuser = require('../middleware/fetchuser');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 
-router.route('/')
+router.route('/fetchalllinks')
 .get(fetchuser, (req, res)=>{
 
 })
 
+router.route('/addlink')
+.post(fetchuser, (req, res)=>{
 
+})
+
+router.route('/updatelink')
+.post(fetchuser, (req, res)=>{
+
+})
 
 module.exports = router;
