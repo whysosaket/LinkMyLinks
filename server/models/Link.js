@@ -6,8 +6,10 @@ const linkSchema = new mongoose.Schema({
         ref: 'user'
     },
     date: {type: Date, default: Date.now},
-    link: { type: String},
-    list: {type: String, default: 'Default'}
+    linkaddress: { type: String},
+    title: { type: String},
+    list: {type: String, default: 'Default'},
+    public: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('link', linkSchema);
