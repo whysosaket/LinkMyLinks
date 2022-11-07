@@ -124,7 +124,7 @@ router
         if (!user) {
           return res
             .status(400)
-            .json({ error: "Please, login with correct credentials" });
+            .json({success, error: "Please, login with correct credentials" });
         }
 
         const passwordCompare = await bcrypt.compare(
@@ -134,7 +134,7 @@ router
         if (!passwordCompare) {
           return res
             .status(400)
-            .json({ error: "Please, login with correct credentials" });
+            .json({success, error: "Please, login with correct credentials" });
         }
 
         const payload = {
@@ -181,14 +181,14 @@ router
       if (!user) {
         return res
           .status(400)
-          .json({ error: "Please, try again with correct credentials" });
+          .json({success, error: "Please, try again with correct credentials" });
       }
 
       // Validating if username is correct
       if (user.username !== username) {
         return res
           .status(400)
-          .json({ error: "Please, try again with correct credentials" });
+          .json({success, error: "Please, try again with correct credentials" });
       }
 
       // Validating if the old password matches userpassword
@@ -199,7 +199,7 @@ router
       if (!passwordCompare) {
         return res
           .status(400)
-          .json({ error: "Please, try again with correct credentials" });
+          .json({success, error: "Please, try again with correct credentials" });
       }
 
       // Generating a secured password
