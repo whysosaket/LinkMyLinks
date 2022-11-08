@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import './LinkItem.css'
 
 const LinkItem = (props) => {
+
+  let navigate = useNavigate();
 
   const {_id, title, linkaddress, list } = props.link
 
@@ -10,6 +13,10 @@ const LinkItem = (props) => {
     props.deleteLink(_id);
     console.log('clicked');
   }
+
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   return (
       <div className="link-item">
@@ -19,7 +26,9 @@ const LinkItem = (props) => {
         </div>
 
         <div className="buttons-section">
+          <span onClick={()=>{openInNewTab(linkaddress)}}>
             <Button text="Open" />
+            </span>
           <button className="space" style={{visibility: "hidden"}}>.</button>
           <span onClick={handleDelete}>
           <i className="fa-solid fa-xmark fa-2xl space cross"></i>
