@@ -115,6 +115,7 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
 router.route("/:id").delete(fetchuser, async (req, res) => {
   try {
     // Checking if link exists
+    let success = false;
 
     const link = await Link.findById(req.params.id);
 
@@ -122,20 +123,20 @@ router.route("/:id").delete(fetchuser, async (req, res) => {
     if (!link) {
       return res
         .status(404)
-        .send("Sorry, couldn't find what you're looking for");
+        .json({success, error: "Sorry, couldn't find what you're looking for"});
     }
 
     // Checking if the link belongs to the user
 
     if (link.user.toString() !== req.user.id) {
-      return res.status(401).send("Bad Request!");
+      return res.status(401).json({success, error: "Bad Request!"});
     }
 
     // Performing the delete operation
 
     const delLink = await Link.findByIdAndDelete(req.params.id);
-
-    res.send(delLink);
+    success = true;
+    res.json({success, info: "Item "+ delLink.title+" Deleted!"});
   } catch (error) {
     console.log(error);
     res.json({ error: "Something Went Wrong!" });

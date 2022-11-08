@@ -50,13 +50,19 @@ const LinkState = (props) => {
   // Delete a Link
   const deleteLink = async (id) => {
     // TODO - Delete note in backend aswell
-    await fetch(`${host}/api/api/link/${id}`, {
+    const response = await fetch(`${host}/api/link/${id}`, {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
         'auth-token': localStorage.getItem('token')
       }
     });
+    const json = await response.json();
+    if(json.success){
+      updateAlert(json.info, "success");
+    }else{
+      updateAlert(json.error, "danger");
+    }
     getLinks();
   };
 
