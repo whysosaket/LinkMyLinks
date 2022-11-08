@@ -2,19 +2,22 @@ import React from "react";
 import Button from "../Button/Button";
 import './LinkItem.css'
 
-const LinkItem = () => {
+const LinkItem = (props) => {
+
+  const {_id, title, linkaddress, list } = props.link
+
   return (
-      <div class="link-item">
-        <div class="info">
-          <h6>CSS Buttons</h6>
-          <p>https://dev.to/webdeasy/top-20-css-buttons-animations-f41</p>
+      <div className="link-item">
+        <div className="info">
+          <h6>{title}</h6>
+          <p>{linkaddress}</p>
         </div>
 
-        <div class="buttons-section">
+        <div className="buttons-section">
             <Button text="Open" />
           <button className="space" style={{visibility: "hidden"}}>.</button>
-          <i class="fa-solid fa-xmark fa-2xl space cross"></i>
-          <i class="fa-solid fa-pen fa-xl space edit"></i>
+          <i className="fa-solid fa-xmark fa-2xl space cross"></i>
+          <i className="fa-solid fa-pen fa-xl space edit"></i>
         </div>
       </div>
   );

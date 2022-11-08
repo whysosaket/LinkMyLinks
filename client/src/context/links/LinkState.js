@@ -17,7 +17,7 @@ const LinkState = (props) => {
       }
     });
     const json = await response.json();
-    setLinks(json);
+    if(json.success) setLinks(json.links);
   };
 
 

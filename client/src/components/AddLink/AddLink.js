@@ -25,7 +25,7 @@ const AddLink = () => {
       <div
         className="modal fade"
         id="addlinkmodal"
-        tabindex="-1"
+        tabIndex="-1"
         role="dialog"
         aria-labelledby="addlinkmodalLabel"
         aria-hidden="true"
@@ -48,7 +48,7 @@ const AddLink = () => {
                   <label htmlFor="linktitle" className="form-label">
                     Title
                   </label>
-                  <input type="text" className="form-control" id="linktitle" placeholder="Title" autocomplete="off"/>
+                  <input type="text" className="form-control" id="linktitle" placeholder="Title" autoComplete="off"/>
                 </div>
 
                 <div className="mb-3">
@@ -60,7 +60,7 @@ const AddLink = () => {
                     className="form-control"
                     id="linkaddress"
                     placeholder="Link Address"
-                    autocomplete="off"
+                    autoComplete="off"
                   />
                 </div>
 
@@ -68,7 +68,7 @@ const AddLink = () => {
                   <label htmlFor="listname" className="form-label">
                     List
                   </label>
-                  <input type="text" className="form-control" id="listname" placeholder="(Default)" autocomplete="off"/>
+                  <input type="text" className="form-control" id="listname" placeholder="(Default)" autoComplete="off"/>
                 </div>
               </form>
             </div>
