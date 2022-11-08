@@ -23,17 +23,24 @@ const AddLink = () => {
 
 
   const handleAddLink = async () =>{
+    // Validating
     let linkadd = linkaddress;
     if(!linkaddress.startsWith('http')){
       linkadd = 'https://'+linkaddress;
     }
+
+    let list = listref.current.value;
+    if(list === ''){
+      list="Default";
+    }
+
     const response = await fetch(`${host}/api/link/addlink`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
         'auth-token': localStorage.getItem('token')
       },
-      body: JSON.stringify({title: titleref.current.value, linkaddress: linkadd, list: listref.current.value})
+      body: JSON.stringify({title: titleref.current.value, linkaddress: linkadd, list: list})
     });
     const json = await response.json();
     if(json.success){
