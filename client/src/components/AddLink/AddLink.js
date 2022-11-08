@@ -2,12 +2,12 @@ import React, { useRef } from "react";
 import Button from "../Button/Button";
 import ButtonRound from "../ButtonRound/ButtonRound";
 import "./AddLink.css";
+import "./Modal.css";
 
 const AddLink = () => {
   const openModal = useRef(null);
 
   const handleClick = () => {
-    console.log("Clicked");
     openModal.current.click();
   };
   return (
@@ -30,33 +30,51 @@ const AddLink = () => {
         aria-labelledby="addlinkmodalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="addlinkmodalLabel">
                 Add Link
               </h5>
               <button
-                type="button"
-                className="close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              ></button>
             </div>
-            <div className="modal-body">...</div>
+            <div className="modal-body">
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="linktitle" className="form-label">
+                    Title
+                  </label>
+                  <input type="text" className="form-control" id="linktitle" placeholder="Title" autocomplete="off"/>
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="linkaddress" className="form-label">
+                    Link Address
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="linkaddress"
+                    placeholder="Link Address"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="listname" className="form-label">
+                    List
+                  </label>
+                  <input type="text" className="form-control" id="listname" placeholder="(Default)" autocomplete="off"/>
+                </div>
+              </form>
+            </div>
+
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
+              <Button text="Add Link" />
             </div>
           </div>
         </div>

@@ -11,10 +11,10 @@ const Login = () => {
           <form>
             <h3>Login Here</h3>
 
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input type="text" placeholder="Email or Phone" id="username" />
 
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input type="password" placeholder="Password" id="password" />
 
             <div className="center-item">

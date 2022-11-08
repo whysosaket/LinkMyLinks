@@ -1,0 +1,40 @@
+.modal .modal-content{
+    border-radius: 16px;
+}
+
+.modal-content label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 100%;
+}
+
+.modal-content input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgb(233, 237, 251);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.modal-content .form-control{
+    margin: 0;
+}
+
+.modal-content ::placeholder{
+    color: #7b7b7b;
+}
+
+@media (max-aspect-ratio: 11/10) {
+
+    .modal .modal-content{
+        text-align: left;
+        max-width: 90%;
+        margin: auto;
+    }
+}
