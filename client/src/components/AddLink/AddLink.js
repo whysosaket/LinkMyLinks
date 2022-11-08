@@ -1,15 +1,61 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
+import AlertContext from "../../context/alerts/alertContext";
 import Button from "../Button/Button";
 import ButtonRound from "../ButtonRound/ButtonRound";
 import "./AddLink.css";
 import "./Modal.css";
 
 const AddLink = () => {
+  const host = "http://192.168.29.73:9000";
+
   const openModal = useRef(null);
+  const closeModal = useRef(null);
+  // refs for modal input values
+  const titleref = useRef(null);
+  const listref = useRef(null)
+
+  // useState for linkaddress
+  const [linkaddress, updateLinkAddress] = useState('');
+
+  // This is for import Context alert
+  const contextAlert = useContext(AlertContext);
+  const {updateAlert} = contextAlert;
+
+
+  const handleAddLink = async () =>{
+    let linkadd = linkaddress;
+    if(!linkaddress.startsWith('http')){
+      linkadd = 'https://'+linkaddress;
+    }
+    const response = await fetch(`${host}/api/link/addlink`, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      },
+      body: JSON.stringify({title: titleref.current.value, linkaddress: linkadd, list: listref.current.value})
+    });
+    const json = await response.json();
+    if(json.success){
+      updateAlert(json.info, "success");
+      updateLinkAddress('');
+      closeModal.current.click();
+
+      // resetting value of form
+      titleref.current.value = '';
+      listref.current.value = '';
+    }else{
+      updateAlert(json.error, "danger");
+    }
+  }
 
   const handleClick = () => {
     openModal.current.click();
   };
+
+  const handleLinkChange = (event)=>{
+    updateLinkAddress(event.target.value);
+  }
   return (
     <>
       <button
@@ -40,6 +86,7 @@ const AddLink = () => {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                ref={closeModal}
               ></button>
             </div>
             <div className="modal-body">
@@ -48,7 +95,7 @@ const AddLink = () => {
                   <label htmlFor="linktitle" className="form-label">
                     Title
                   </label>
-                  <input type="text" className="form-control" id="linktitle" placeholder="Title" autoComplete="off"/>
+                  <input type="text" className="form-control" id="linktitle" placeholder="Title" autoComplete="off" ref={titleref}/>
                 </div>
 
                 <div className="mb-3">
@@ -56,11 +103,13 @@ const AddLink = () => {
                     Link Address
                   </label>
                   <input
-                    type="text"
+                    type="url"
                     className="form-control"
                     id="linkaddress"
                     placeholder="Link Address"
                     autoComplete="off"
+                    value={linkaddress}
+                    onChange={handleLinkChange}
                   />
                 </div>
 
@@ -68,13 +117,15 @@ const AddLink = () => {
                   <label htmlFor="listname" className="form-label">
                     List
                   </label>
-                  <input type="text" className="form-control" id="listname" placeholder="(Default)" autoComplete="off"/>
+                  <input type="text" className="form-control" id="listname" placeholder="(Default)" autoComplete="off" ref={listref}/>
                 </div>
               </form>
             </div>
 
             <div className="modal-footer">
+              <span onClick={handleAddLink}>
               <Button text="Add Link" />
+              </span>
             </div>
           </div>
         </div>
@@ -93,6 +144,9 @@ const AddLink = () => {
                   id="formWhite"
                   className="form-control"
                   placeholder="Add a Link"
+                  value={linkaddress}
+                  onChange={handleLinkChange}
+                  autoComplete="off"
                 />
                 <span className="hide-mob" onClick={handleClick}>
                   <Button text="Add Link" />
