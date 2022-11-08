@@ -59,7 +59,7 @@ const LinkState = (props) => {
     });
     const json = await response.json();
     if(json.success){
-      updateAlert(json.info, "success");
+      updateAlert(json.info, "warning");
     }else{
       updateAlert(json.error, "danger");
     }
