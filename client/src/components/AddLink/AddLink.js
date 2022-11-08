@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import AlertContext from "../../context/alerts/alertContext";
+import LinkContext from "../../context/links/linkContext";
 import Button from "../Button/Button";
 import ButtonRound from "../ButtonRound/ButtonRound";
 import "./AddLink.css";
@@ -17,9 +18,9 @@ const AddLink = () => {
   // useState for linkaddress
   const [linkaddress, updateLinkAddress] = useState('');
 
-  // This is for import Context alert
-  const contextAlert = useContext(AlertContext);
-  const {updateAlert} = contextAlert;
+  // CONTEXT FOR ADD LINK
+  const contextLink = useContext(LinkContext);
+  const {addLink} = contextLink;
 
 
   const handleAddLink = async () =>{
@@ -34,26 +35,14 @@ const AddLink = () => {
       list="Default";
     }
 
-    const response = await fetch(`${host}/api/link/addlink`, {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem('token')
-      },
-      body: JSON.stringify({title: titleref.current.value, linkaddress: linkadd, list: list})
-    });
-    const json = await response.json();
-    if(json.success){
-      updateAlert(json.info, "success");
-      updateLinkAddress('');
-      closeModal.current.click();
+    addLink(titleref.current.value, linkadd,list);
 
-      // resetting value of form
-      titleref.current.value = '';
-      listref.current.value = '';
-    }else{
-      updateAlert(json.error, "danger");
-    }
+    // Resetting values
+     updateLinkAddress('');
+        closeModal.current.click();
+       // resetting value of form
+       titleref.current.value = '';
+       listref.current.value = '';
   }
 
   const handleClick = () => {

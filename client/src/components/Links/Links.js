@@ -7,7 +7,7 @@ const Links = () => {
 
 
   const contextLink = useContext(LinkContext);
-  const {links, getLinks} = contextLink;
+  const {links, getLinks, deleteLink} = contextLink;
   console.log(links)
 
   useEffect(()=>{
@@ -21,7 +21,7 @@ const Links = () => {
     <div className='links'>
         {
           links.map((link, index)=>{
-            return <LinkItem link={link} key={index} />
+            return <LinkItem link={link} key={index} deleteLink={deleteLink} />
           })
         }
     </div>

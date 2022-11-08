@@ -12,8 +12,8 @@ import Alert from "./components/Alert/Alert";
 function App() {
   return (
     <>
+    <AlertState>
       <LinkState>
-        <AlertState>
           <Router>
             <div className="mainContainer">
               <Navbar />
@@ -29,8 +29,8 @@ function App() {
               <Footer />
             </div>
           </Router>
-        </AlertState>
       </LinkState>
+      </AlertState>
     </>
   );
 }

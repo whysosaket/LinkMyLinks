@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AlertContext from "../alerts/alertContext";
 import LinkContext from "./linkContext";
 
 const LinkState = (props) => {
   const host = "http://192.168.29.73:9000";
 
   const [links, setLinks] = useState([]);
+
+  // This is for import Context alert
+  const contextAlert = useContext(AlertContext);
+  const {updateAlert} = contextAlert;
 
   // Get all links
   const getLinks = async () => {
@@ -24,7 +29,7 @@ const LinkState = (props) => {
   // Add a new Link
   const addLink = async (title, linkaddress, list, isPublic) => {
     // Doing a API CALL
-    await fetch(`${host}/api/links/addnote`, {
+    const response = await fetch(`${host}/api/link/addlink`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +37,13 @@ const LinkState = (props) => {
       },
       body: JSON.stringify({title, linkaddress, list, public: isPublic})
     });
-    
+
+    const json = await response.json();
+    if(json.success){
+      updateAlert(json.info, "success");
+    }else{
+      updateAlert(json.error, "danger");
+    }
     getLinks();
   };
 
