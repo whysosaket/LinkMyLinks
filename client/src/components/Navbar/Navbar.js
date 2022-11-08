@@ -56,7 +56,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          {!localStorage.getItem("lmltoken") ? (
+          {!localStorage.getItem("token") ? (
             <div className="d-flex">
               <Link
                 className="btn btn-outline-light mx-1"
@@ -70,7 +70,8 @@ const Navbar = () => {
             <button
               className="btn btn-outline-light max-2"
               onClick={() => {
-                localStorage.removeItem("lmltoken");
+                localStorage.removeItem("token");
+                localStorage.removeItem("username");
                 navigate("/login");
               }}
             >
