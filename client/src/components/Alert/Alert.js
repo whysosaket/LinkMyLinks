@@ -7,7 +7,7 @@ const Alert = () => {
 
   return (
     <div>
-      <div className={visible +" alert alert-"+type} role="alert">
+      <div className={visible +" alert alert-"+type+" fixed-top"} role="alert">
         {alert}
       </div>
     </div>
