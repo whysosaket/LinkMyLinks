@@ -31,11 +31,23 @@
 }
 
 .cross {
+  color: rgb(191, 0, 0);
+}
+
+.cross:active{
   color: red;
 }
 
 .edit {
   color: rgb(40, 40, 40);
+}
+
+.edit:active{
+  color: green;
+}
+
+.green:active{
+  color: rgb(0, 222, 0);
 }
 
 
