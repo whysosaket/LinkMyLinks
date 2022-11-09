@@ -48,7 +48,7 @@ const Login = () => {
             <h3>Login Here</h3>
 
             <label htmlFor="username">Username</label>
-            <input type="text" placeholder="Email or Phone" id="username" ref={usernameref}/>
+            <input type="text" placeholder="Username" id="username" ref={usernameref}/>
 
             <label htmlFor="password">Password</label>
             <input type="password" placeholder="Password" id="password" ref={passwordref}/>
