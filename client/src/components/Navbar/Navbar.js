@@ -39,7 +39,7 @@ const Navbar = () => {
                 className={` nav-link ${
                   location.pathname === "/lists" && "active"
                 }`}
-                to={localStorage.getItem("lmltoken")?"/lists":"/login"}
+                to={localStorage.getItem("lmltoken") ? "/lists" : "/login"}
               >
                 Lists
               </Link>
@@ -57,15 +57,27 @@ const Navbar = () => {
             </li>
           </ul>
           {!localStorage.getItem("token") ? (
-            <div className="d-flex">
-              <Link
-                className="btn btn-outline-light mx-1"
-                to="/login"
-                role="button"
-              >
-                Login
-              </Link>
-            </div>
+            <>
+              <div className="d-flex">
+                <Link
+                  className="btn btn-outline-light mx-1"
+                  to="/login"
+                  role="button"
+                >
+                  Login
+                </Link>
+              </div>
+
+              <div className="d-flex">
+                <Link
+                  className="btn btn-outline-light mx-1"
+                  to="/signup"
+                  role="button"
+                >
+                  Signup
+                </Link>
+              </div>
+            </>
           ) : (
             <button
               className="btn btn-outline-light max-2"
