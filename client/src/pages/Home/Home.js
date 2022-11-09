@@ -1,7 +1,7 @@
 import React from 'react'
-import AddLink from "../AddLink/AddLink";
-import Greet from '../Greet/Greet';
-import Links from '../Links/Links';
+import AddLink from "../../components/AddLink/AddLink";
+import Greet from '../../components/Greet/Greet';
+import Links from '../../components/Links/Links';
 
 const Home = () => {
   return (

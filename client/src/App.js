@@ -1,14 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import About from "./components/About/About";
-import Home from "./components/Home/Home";
-import Lists from "./components/Lists/Lists";
-import Login from "./components/Login/Login";
+
+// page imports
+import About from "./pages/About/About";
+import Home from "./pages/Home/Home";
+import Lists from "./pages/Lists/Lists";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/Signup/Signup";
+
 import Footer from "./components/Footer/Footer";
 import LinkState from "./context/links/LinkState";
 import AlertState from "./context/alerts/AlertState";
 import Alert from "./components/Alert/Alert";
-import Signup from "./components/Signup/Signup";
+
 
 function App() {
   return (
