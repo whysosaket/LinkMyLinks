@@ -20,6 +20,10 @@ const LinkItem = (props) => {
       navigator.clipboard.writeText(linkaddress);
   }
 
+  const handleEdit = ()=>{
+    props.handleForeignClick(_id, title, linkaddress, list, false)
+  }
+
 
   return (
       <div className="link-item">
@@ -36,7 +40,9 @@ const LinkItem = (props) => {
           <span onClick={handleDelete}>
           <i className="fa-solid fa-xmark fa-2xl space cross"></i>
           </span>
+          <span onClick={handleEdit}>
           <i className="fa-solid fa-pen fa-xl space edit"></i>
+          </span>
           <span onClick={handleCopy}>
           <i className="green fa-regular fa-clipboard fa-xl"></i>
           </span>
