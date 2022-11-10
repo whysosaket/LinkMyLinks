@@ -1,5 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// importing components
 import Navbar from "./components/Navbar/Navbar";
+import Alert from "./components/Alert/Alert";
+import Footer from "./components/Footer/Footer";
 
 // page imports
 import About from "./pages/About/About";
@@ -8,10 +12,10 @@ import Lists from "./pages/Lists/Lists";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 
-import Footer from "./components/Footer/Footer";
+// Importing states for context
 import LinkState from "./context/links/LinkState";
 import AlertState from "./context/alerts/AlertState";
-import Alert from "./components/Alert/Alert";
+
 
 
 function App() {

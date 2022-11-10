@@ -31,7 +31,7 @@ const Signup = () => {
     });
     const json = await response.json();
     if(json.success){
-      navigate('/');
+      navigate('/login');
       updateAlert(json.info, "success");
     }else{
       updateAlert(json.error, "danger");
