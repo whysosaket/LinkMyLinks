@@ -93,11 +93,11 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
     let link = await Link.findById(req.params.id);
 
     if (!link) {
-      return res.status(404).json({ error: "Not Found!", success });
+      return res.status(404).json({success,  error: "Not Found!", success });
     }
 
     if (link.user.toString() !== req.user.id) {
-      return res.status(401).send("Bad Request!");
+      return res.status(401).json({success, error: "Bad Request!"});
     }
 
     link = await Link.findByIdAndUpdate(
@@ -105,10 +105,11 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
       { $set: newLink },
       { new: true }
     );
-    res.json({ link });
+    success = true;
+    res.json({success, info: "Link Updated", link });
   } catch (error) {
     console.log(error);
-    res.json({ error: "Something Went Wrong!" });
+    res.json({success: false, error: "Something Went Wrong!" });
   }
 });
 

@@ -8,7 +8,6 @@ const LinkItem = (props) => {
 
   const handleDelete = ()=>{
     props.deleteLink(_id);
-    console.log('clicked');
   }
 
   const openInNewTab = url => {
@@ -28,7 +27,7 @@ const LinkItem = (props) => {
   return (
       <div className="link-item">
         <div className="info">
-          <h6>{title}</h6>
+          <h6>{(title.length>30)?title.substring(0,29)+".....":title}</h6>
           <p>{(linkaddress.length>45)?linkaddress.substring(0,45)+".....":linkaddress}</p>
         </div>
 

@@ -69,7 +69,7 @@ const LinkState = (props) => {
   // Edit a note
   const editLink = async (_id, title, linkaddress, list, isPublic) => {
     // API call
-    await fetch(`${host}/api/link/updatelink/${_id}`, {
+    const response = await fetch(`${host}/api/link/updatelink/${_id}`, {
       method: 'PUT', 
       headers: {
         'Content-Type': 'application/json',
@@ -78,19 +78,13 @@ const LinkState = (props) => {
       body: JSON.stringify({title, linkaddress, list, public: isPublic}) 
     });
 
-
-
-    //logic to edit in client
-    for (let i = 0; i < links.length; i++) {
-      const element = links[i];
-      
-      if(element._id===_id){
-        element.title = title;
-        element.linkaddress = linkaddress;
-        element.list = list;
-        element.isPublic = isPublic;
-      }
+    const json = await response.json();
+    if(json.success){
+      updateAlert(json.info, "primary");
+    }else{
+      updateAlert(json.error, "danger");
     }
+
     getLinks();
   };
 
