@@ -67,7 +67,7 @@ const Links = () => {
         type="button"
         className="btn btn-primary d-none"
         data-bs-toggle="modal"
-        data-bs-target="#addlinkmodal"
+        data-bs-target="#editlinkmodal"
         ref={openModal}
       >
         Launch demo modal
@@ -75,16 +75,16 @@ const Links = () => {
 
       <div
         className="modal fade"
-        id="addlinkmodal"
+        id="editlinkmodal"
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="addlinkmodalLabel"
+        aria-labelledby="editlinkmodalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="addlinkmodalLabel">
+              <h5 className="modal-title" id="editlinkmodalLabel">
                 Update Link
               </h5>
               <button
