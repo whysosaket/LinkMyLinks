@@ -148,7 +148,7 @@ const Links = () => {
 
             <div className="modal-footer">
               <span onClick={handleEditLink}>
-                <Button text="Add Link" />
+                <Button text="Update Link" />
               </span>
             </div>
           </div>
