@@ -16,13 +16,11 @@ import Signup from "./pages/Signup/Signup";
 import LinkState from "./context/links/LinkState";
 import AlertState from "./context/alerts/AlertState";
 
-
-
 function App() {
   return (
     <>
-    <AlertState>
-      <LinkState>
+      <AlertState>
+        <LinkState>
           <Router>
             <div className="mainContainer">
               <Navbar />
@@ -39,7 +37,7 @@ function App() {
               <Footer />
             </div>
           </Router>
-      </LinkState>
+        </LinkState>
       </AlertState>
     </>
   );
