@@ -19,7 +19,7 @@ import AlertState from "./context/alerts/AlertState";
 function App() {
   return (
     <>
-      {/* <AlertState>
+      <AlertState>
         <LinkState>
           <Router>
             <div className="mainContainer">
@@ -38,8 +38,7 @@ function App() {
             </div>
           </Router>
         </LinkState>
-      </AlertState> */}
-      <h1 className="text-3xl font-bold underline">Hello World!</h1>
+      </AlertState>
     </>
   );
 }
