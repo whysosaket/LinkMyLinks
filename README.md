@@ -2,6 +2,9 @@
  
 The purpose of this project is to enable link tracking by simply remembering your login credentials. This will allow you to retrieve important links that you may have forgotten. The key difference between this project and other link-sharing websites is that while others only offer the ability to add social or public links, this project allows you to organize your links into categories, mark specific links as private, and even designate certain groups as private. This means that public links will be visible on your profile even if they are accessed without your login information.
 
+## Note
+If you want to work only on the frontend, the backend is hosted on vercel, you can check that out!
+
 ## Tech Stack
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
