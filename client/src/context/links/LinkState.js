@@ -18,7 +18,7 @@ const LinkState = (props) => {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem('token')
+        'auth-token': localStorage.getItem('lmltoken')
       }
     });
     const json = await response.json();
@@ -33,7 +33,7 @@ const LinkState = (props) => {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem('token')
+        'auth-token': localStorage.getItem('lmltoken')
       },
       body: JSON.stringify({title, linkaddress, list, public: isPublic})
     });
@@ -54,7 +54,7 @@ const LinkState = (props) => {
       method: 'DELETE', 
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem('token')
+        'auth-token': localStorage.getItem('lmltoken')
       }
     });
     const json = await response.json();
@@ -73,7 +73,7 @@ const LinkState = (props) => {
       method: 'PUT', 
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem('token')
+        'auth-token': localStorage.getItem('lmltoken')
       },
       body: JSON.stringify({title, linkaddress, list, public: isPublic}) 
     });

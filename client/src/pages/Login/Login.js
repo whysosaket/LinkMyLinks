@@ -30,7 +30,7 @@ const Login = () => {
     });
     const json = await response.json();
     if(json.success){
-      localStorage.setItem('token', json.authtoken);
+      localStorage.setItem('lmltoken', json.authtoken);
       localStorage.setItem('username', json.username);
       navigate('/');
       updateAlert("Logged in as "+json.username, "success");
