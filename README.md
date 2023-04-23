@@ -4,7 +4,8 @@ The purpose of this project is to enable link tracking by simply remembering you
 
 ## Note
 If you want to work only on the frontend, the backend is hosted on vercel, you can check that out!
-
+<br>
+<strong>Hosted Backend Link: </strong> https://link-my-links.vercel.app
 ## Tech Stack
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
