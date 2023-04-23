@@ -7,6 +7,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fetchuser = require("../middleware/fetchuser");
+const isValidURL = require("../middleware/isValidURL")
 const Link = require("../models/Link");
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -23,10 +24,10 @@ router.route("/fetchalllinks").get(fetchuser, async (req, res) => {
   try {
     const links = await Link.find({ user: req.user.id });
     success = true;
-    res.json({ success, links });
+    return res.json({ success, links });
   } catch (error) {
     console.log(error);
-    res.json({ error: "Something Went Wrong!" });
+    return res.json({ error: "Something Went Wrong!" });
   }
 });
 
@@ -40,7 +41,7 @@ router.route("/addlink").post(
       "Link Address cannot be blank/less than 4 characters"
     ).isLength({ min: 4 }),
   ],
-  fetchuser,
+  fetchuser,isValidURL,
   async (req, res) => {
     let success = false;
 
@@ -68,10 +69,10 @@ router.route("/addlink").post(
       });
 
       success = true;
-      res.json({ success, info: "Link Added!" });
+      return res.json({ success, info: "Link Added!" });
     } catch (error) {
       console.log(error);
-      res.json({ error: "Something Went Wrong!" });
+      return res.json({ error: "Something Went Wrong!" });
     }
   }
 );
@@ -106,10 +107,10 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
       { new: true }
     );
     success = true;
-    res.json({success, info: "Link Updated", link });
+    return res.json({success, info: "Link Updated", link });
   } catch (error) {
     console.log(error);
-    res.json({success: false, error: "Something Went Wrong!" });
+    return res.json({success: false, error: "Something Went Wrong!" });
   }
 });
 
@@ -137,10 +138,10 @@ router.route("/:id").delete(fetchuser, async (req, res) => {
 
     const delLink = await Link.findByIdAndDelete(req.params.id);
     success = true;
-    res.json({success, info: "Item "+ delLink.title+" Deleted!"});
+    return res.json({success, info: "Item "+ delLink.title+" Deleted!"});
   } catch (error) {
     console.log(error);
-    res.json({ error: "Something Went Wrong!" });
+    return res.json({ error: "Something Went Wrong!" });
   }
 });
 

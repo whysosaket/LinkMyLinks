@@ -77,10 +77,10 @@ router
           },
         };
         success = true;
-        res.json({ success, info: "Account Created Successfully!!" });
+        return res.json({ success, info: "Account Created Successfully!!" });
       } catch (error) {
         console.log(error);
-        res.json({ error: "Something Went Wrong!" });
+        return res.json({ error: "Something Went Wrong!" });
       }
     }
   );
@@ -145,10 +145,10 @@ router
 
         const authtoken = jwt.sign(payload, JWT_SECRET);
         success = true;
-        res.json({ success, username, authtoken });
+        return res.json({ success, username, authtoken });
       } catch (error) {
         console.log(error);
-        res.json({ error: "Something Went Wrong!" });
+        return res.json({ error: "Something Went Wrong!" });
       }
     }
   );
@@ -211,11 +211,11 @@ router
       user.save();
 
       success = true;
-      res.json({ success, info: "Password updated successfully" });
+      return res.json({ success, info: "Password updated successfully" });
 
       }catch (error) {
         console.log(error);
-        res.json({ error: "Something Went Wrong!" });
+        return res.json({ error: "Something Went Wrong!" });
       }
     }
   );
