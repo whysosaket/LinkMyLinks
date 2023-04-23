@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
-import AlertContext from "../../context/alerts/alertContext";
+// import AlertContext from "../../context/alerts/alertContext";
 import LinkContext from "../../context/links/linkContext";
 import Button from "../Button/Button";
 import ButtonRound from "../ButtonRound/ButtonRound";
@@ -7,7 +7,7 @@ import "./AddLink.css";
 import "./Modal.css";
 
 const AddLink = () => {
-  const host = "http://192.168.29.73:9000";
+  // const host = "http://192.168.29.73:9000";
 
   const openModal = useRef(null);
   const closeModal = useRef(null);
