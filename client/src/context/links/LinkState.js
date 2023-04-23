@@ -3,7 +3,7 @@ import AlertContext from "../alerts/alertContext";
 import LinkContext from "./linkContext";
 
 const LinkState = (props) => {
-  const host = "http://192.168.43.234:9000";
+  const host = "https://link-my-links.vercel.app";
 
   const [links, setLinks] = useState([]);
 

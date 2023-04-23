@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext'
 
 const Login = () => {
-  const host = "http://192.168.43.234:9000";
+  const host = "https://link-my-links.vercel.app";
 
   const navigate = useNavigate();
 
