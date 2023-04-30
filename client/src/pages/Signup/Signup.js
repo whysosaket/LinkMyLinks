@@ -6,8 +6,6 @@ import {useNavigate} from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext'
 
 const Signup = () => {
-  const host = "https://link-my-links.vercel.app";
-
   const navigate = useNavigate();
 
   // Importing alert context
@@ -22,7 +20,7 @@ const Signup = () => {
 
   const handleClick = async () => {
     // Doing a API CALL
-    const response = await fetch(`${host}/api/auth/createuser`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/createuser`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
