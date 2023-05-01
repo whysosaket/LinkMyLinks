@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Button from "../../components/Button/Button";
 import "./Signup.css";
 import "../../Glow.css";
@@ -12,10 +12,14 @@ const Signup = () => {
   const contextAlert = useContext(AlertContext);
   const {updateAlert} = contextAlert;
 
+  const [otpHidden, setOtpHidden] = useState(true);
+
   // Creating refs to handle values
   const usernameref = useRef(null);
   const passwordref = useRef(null);
   const nameref = useRef(null);
+  const emailref = useRef(null);
+  const otpref = useRef(null);
 
 
   const handleClick = async () => {
@@ -25,7 +29,7 @@ const Signup = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({name: nameref.current.value, username: usernameref.current.value, password: passwordref.current.value})
+      body: JSON.stringify({name: nameref.current.value, username: usernameref.current.value, password: passwordref.current.value, otp: otpref.current.value, email: emailref.current.value})
     });
     const json = await response.json();
     if(json.success){
@@ -35,6 +39,23 @@ const Signup = () => {
       updateAlert(json.error, "danger");
     }
   };
+
+  const handleOtp = async () => {
+      setOtpHidden(false);
+      const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/otp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email: emailref.current.value})
+      });
+      const json = await response.json();
+      if(json.success){
+        updateAlert(json.info, "success");
+      }else{
+        updateAlert(json.error, "danger");
+      }
+  }
 
 
   return (
@@ -47,11 +68,25 @@ const Signup = () => {
             <label htmlFor="username">Name</label>
             <input type="text" placeholder="Name" id="name" ref={nameref}/>
 
-            <label htmlFor="username">Username</label>
+            <div className="">
+            <label htmlFor="username">Email</label>
+            <input type="text" placeholder="Email" id="email" ref={emailref}/>
+            <div className="" onClick={handleOtp}>
+              {" "}
+              <p className="btn btn-outline-dark btn-sm ml-2 my-2" style={{fontSize: '12px'}}> Send OTP </p>
+            </div>
+            </div>
+
+            <label htmlFor="username" className="mt-2">Username</label>
             <input type="text" placeholder="Username" id="username" ref={usernameref}/>
 
             <label htmlFor="password">Password</label>
             <input type="password" placeholder="Password" id="password" ref={passwordref}/>
+
+            <div className={`${otpHidden&&'d-none'}`}>
+            <label htmlFor="otp">OTP</label>
+            <input type="text" placeholder="OTP" id="otp" ref={otpref}/>
+            </div>
 
             <div className="center-item" onClick={handleClick}>
               {" "}
