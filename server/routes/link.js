@@ -62,7 +62,7 @@ router.route("/addlink").post(
     if (links.length >= 20) {
         let validationlink = links[19];
         let validationtime = validationlink.createdAt;
-        let currenttime = Date.now();
+        let currenttime = links[0].createdAt;
         let difference = currenttime - validationtime;
         if (difference < 3600000) {
             return res.status(400).json({ success, error: "Timeout! Try again after sometime." });
