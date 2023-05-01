@@ -288,8 +288,6 @@ router.route('/otp').post(async (req, res) => {
 
       });
 
-      let otpMessage = `Welcome to LinkMyLinks,\n Your OTP for verification is <strong>${otp}</strong>, this is valid for 5 minutes.`;
-
       const mailOptions = {
         from: process.env.EMAIL,
         to: email,

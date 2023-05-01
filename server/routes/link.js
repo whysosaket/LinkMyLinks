@@ -60,11 +60,13 @@ router.route("/addlink").post(
     // aading limiter to 30 links per hour
     const links = await Link.find({ user: req.user.id });
     if (links.length >= 20) {
-      console.log(links);
+      // console.log(links);
         let validationlink = links[19];
-        let validationtime = validationlink.createdAt;
-        let currenttime = links[0].createdAt;
-        let difference = currenttime - validationtime;
+        let validationtime = validationlink.date;
+        let currenttime = links[0].date;
+        validationtime = new Date(validationtime).getTime();
+        currenttime = new Date(currenttime).getTime();
+        let difference = validationtime - currenttime;
         if (difference < 3600000) {
             return res.status(400).json({ success, error: "Timeout! Try again after sometime." });
         }
