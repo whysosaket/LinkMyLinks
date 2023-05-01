@@ -289,7 +289,7 @@ router.route('/otp').post(async (req, res) => {
       });
 
       const mailOptions = {
-        from: process.env.EMAIL,
+        from: 'LinkMyLinks <' + process.env.EMAIL + '>',
         to: email,
         subject: 'Your One-Time Password (OTP) Verification Code',
         html: `
@@ -308,7 +308,7 @@ router.route('/otp').post(async (req, res) => {
           console.log(error);
           res.json({error: "Something went wrong"});
         } else {
-          await Otp.create({email, otp});
+          await Otp.create({email1, otp});
           return res.json({success: true, message: "OTP sent successfully"});
         }
       }
