@@ -57,6 +57,18 @@ router.route("/addlink").post(
       return res.status(400).json({ success, error: "Could Not Find User!" });
     }
 
+    // aading limiter to 30 links per hour
+    const links = await Link.find({ user: req.user.id });
+    if (links.length >= 20) {
+        let validationlink = links[19];
+        let validationtime = validationlink.createdAt;
+        let currenttime = Date.now();
+        let difference = currenttime - validationtime;
+        if (difference < 3600000) {
+            return res.status(400).json({ success, error: "Timeout! Try again after sometime." });
+        }
+    }ß
+
     try {
       // Saving body data into constants
       const { title, list, linkaddress } = req.body;
