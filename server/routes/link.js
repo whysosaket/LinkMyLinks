@@ -67,7 +67,7 @@ router.route("/addlink").post(
         if (difference < 3600000) {
             return res.status(400).json({ success, error: "Timeout! Try again after sometime." });
         }
-    }ß
+    }
 
     try {
       // Saving body data into constants
