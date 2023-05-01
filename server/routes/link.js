@@ -60,6 +60,7 @@ router.route("/addlink").post(
     // aading limiter to 30 links per hour
     const links = await Link.find({ user: req.user.id });
     if (links.length >= 20) {
+      console.log(links);
         let validationlink = links[19];
         let validationtime = validationlink.createdAt;
         let currenttime = links[0].createdAt;
