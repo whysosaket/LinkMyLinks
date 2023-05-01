@@ -308,7 +308,7 @@ router.route('/otp').post(async (req, res) => {
           console.log(error);
           res.json({error: "Something went wrong"});
         } else {
-          await Otp.create({email1, otp});
+          await Otp.create({email: email1, otp});
           return res.json({success: true, message: "OTP sent successfully"});
         }
       }
