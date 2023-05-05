@@ -4,12 +4,14 @@ require("dotenv").config();
 const expess = require("express");
 const router = expess.Router();
 const User = require("../models/User");
+const Otp = require("../models/Otp");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const nodemailer = require("nodemailer");
 
 /*
 
@@ -30,6 +32,7 @@ router
       body("name", "Enter a valid name").isLength({ min: 3 }),
       body("password").isLength({ min: 6 }),
       body("username").isLength({ min: 4 }),
+      body("email").isEmail(),
     ],
     async (req, res) => {
       let success = false;
@@ -59,6 +62,35 @@ router
           return null;
         }
 
+        // Checking if email already exists
+        user = await User.findOne({ email: data.email.toLowerCase() });
+        if (user) {
+          res.status(400).json({
+            success,
+            error: "Sorry, a user with this email already exists!",
+          });
+          return null;
+        }
+
+        // Checking if otp is valid
+        const otpCheck = await Otp.findOne({ email: data.email.toLowerCase() });
+        if (!otpCheck) {
+          res.status(400).json({
+            success,
+            error: "Sorry, the otp is invalid or expired!",
+          });
+          return null;
+        }
+
+        // Checking if otp is valid
+        if (otpCheck.otp !== data.otp) {
+          res.status(400).json({
+            success,
+            error: "Sorry, the otp is invalid or expired!",
+          });
+          return null;
+        }
+
         // Using bcrypt to generate a secured password
 
         // Crating a salt from bcrypt
@@ -69,6 +101,7 @@ router
           name: data.name,
           password: securedPassword,
           username: data.username.toLowerCase(),
+          email: data.email.toLowerCase(),
         });
 
         const returnData = {
@@ -219,5 +252,75 @@ router
       }
     }
   );
+
+router.route('/otp').post(async (req, res) => {
+  const {email} = req.body;
+  // check if email is valid and not a spam email
+  
+  if(!email || !isValid(email.toLowerCase())){
+    return res.json({error: "Please enter a valid email"});
+  }
+
+    let email1 = email.toLowerCase();
+    if(isValid(email1)){
+
+      // check if email is already registered
+      const user = await User.findOne({email: email1});
+      if(user){
+        return res.json({error: "Email already registered"});
+      }
+
+      // check if otp is already sent
+      const gotOtp = await Otp.findOne({email: email1});
+      if(gotOtp){
+        return res.json({error: "OTP already sent, check your email!"});
+      }
+
+      // use nodemailer to send otp
+      const otp = Math.floor(100000 + Math.random() * 900000);
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PASSWORD
+        },
+        secure: true
+
+      });
+
+      const mailOptions = {
+        from: 'LinkMyLinks <' + process.env.EMAIL + '>',
+        to: email,
+        subject: 'Your One-Time Password (OTP) Verification Code',
+        html: `
+          <p>Hello There,</p>
+          <p>Thank you for choosing our service. To verify your account, please enter the following One-Time Password (OTP) in the provided field:</p>
+          <h2 style="font-weight: bold;">${otp}</h2>
+          <p>Please note that this OTP is valid for only a single use and will expire in <strong>5 Minutes</strong>. If you have not initiated this verification process, please disregard this email.</p>
+          <p>Thank you for your cooperation.</p>
+          <p>Best regards,</p>
+          <h4>LinkMyLinks Co.</h4>
+        `
+      };
+      
+      transporter.sendMail(mailOptions, async function(error, info){
+        if (error) {
+          console.log(error);
+          res.json({error: "Something went wrong"});
+        } else {
+          await Otp.create({email: email1, otp});
+          return res.json({success: true, message: "OTP sent successfully"});
+        }
+      }
+      );
+    }else{
+      return res.json({error: "Please enter a valid email"});
+    }
+})
+
+function isValid(email){
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return emailRegex.test(email);
+}
 
 module.exports = router;

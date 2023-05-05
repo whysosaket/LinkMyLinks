@@ -3,7 +3,7 @@ import AlertContext from "../alerts/alertContext";
 import LinkContext from "./linkContext";
 
 const LinkState = (props) => {
-  const host = "https://link-my-links.vercel.app";
+  const host = process.env.REACT_APP_HOST;
 
   const [links, setLinks] = useState([]);
 

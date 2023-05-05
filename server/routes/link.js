@@ -3,6 +3,7 @@ require("dotenv").config();
 const expess = require("express");
 const router = expess.Router();
 const User = require("../models/User");
+const Otp = require("../models/Otp");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -55,6 +56,21 @@ router.route("/addlink").post(
     const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(400).json({ success, error: "Could Not Find User!" });
+    }
+
+    // aading limiter to 30 links per hour
+    const links = await Link.find({ user: req.user.id });
+    if (links.length >= 20) {
+      // console.log(links);
+        let validationlink = links[links.length - 19];
+        let validationtime = validationlink.date;
+        validationtime = new Date(validationtime).getTime();
+        let otp = await Otp.create({ otp: "123456", email: "test" });
+        currenttime = new Date(otp.createdAt).getTime();
+        let difference = currenttime - validationtime;
+        if (difference < 3600000) {
+            return res.status(400).json({ success, error: "Timeout! Try again after sometime." });
+        }
     }
 
     try {

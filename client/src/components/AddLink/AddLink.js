@@ -7,7 +7,7 @@ import "./AddLink.css";
 import "./Modal.css";
 
 const AddLink = () => {
-  // const host = "http://192.168.29.73:9000";
+   // const host = process.env.REACT_APP_HOST;
 
   const openModal = useRef(null);
   const closeModal = useRef(null);
