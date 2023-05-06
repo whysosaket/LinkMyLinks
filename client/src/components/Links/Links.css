@@ -1,6 +1,9 @@
 .links{
     margin-bottom: 15rem;
-    margin-top: -2rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 h2.in-links{
