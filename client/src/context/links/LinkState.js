@@ -14,6 +14,7 @@ const LinkState = (props) => {
   // Get all links
   const getLinks = async () => {
     // Doing a API CALL
+    props.setProgress(30);
     const response = await fetch(`${host}/api/link/fetchalllinks`, {
       method: 'GET', 
       headers: {
@@ -21,8 +22,10 @@ const LinkState = (props) => {
         'auth-token': localStorage.getItem('lmltoken')
       }
     });
+    props.setProgress(60);
     const json = await response.json();
     if(json.success) setLinks(json.links);
+    props.setProgress(100);
   };
 
 
