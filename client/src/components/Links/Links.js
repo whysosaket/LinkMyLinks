@@ -4,6 +4,7 @@ import "./Links.css";
 import LinkContext from "../../context/links/linkContext";
 import Button from "../Button/Button";
 
+
 const Links = () => {
   // Code to get code
 
@@ -46,13 +47,20 @@ const Links = () => {
 
     updateLink({ ...link, [name]: value });
   };
-
+ 
+ 
+  
   return (
     <>
+      
       <h2 className="in-links">Default List</h2>
       <div className="links">
+        
         {links.map((link, index) => {
+          
+          
           return (
+            
             <LinkItem
               link={link}
               key={index}
