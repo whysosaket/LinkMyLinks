@@ -2,15 +2,12 @@ import React, { useContext, useRef, useState } from "react";
 import Button from "../../components/Button/Button";
 import "./Signup.css";
 import "../../Glow.css";
-import {useNavigate} from 'react-router-dom';
-import AlertContext from '../../context/alerts/alertContext'
+import AuthContext from '../../context/auth/AuthContext';
 
 const Signup = () => {
-  const navigate = useNavigate();
-
   // Importing alert context
-  const contextAlert = useContext(AlertContext);
-  const {updateAlert} = contextAlert;
+  const contextAuth = useContext(AuthContext);
+  const {signup,sendOtp} = contextAuth;
 
   const [otpHidden, setOtpHidden] = useState(true);
 
@@ -21,40 +18,13 @@ const Signup = () => {
   const emailref = useRef(null);
   const otpref = useRef(null);
 
-
   const handleClick = async () => {
-    // Doing a API CALL
-    const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/createuser`, {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name: nameref.current.value, username: usernameref.current.value, password: passwordref.current.value, otp: otpref.current.value, email: emailref.current.value})
-    });
-    const json = await response.json();
-    if(json.success){
-      navigate('/login');
-      updateAlert(json.info, "success");
-    }else{
-      updateAlert(json.error, "danger");
-    }
+    signup(nameref.current.value, usernameref.current.value, passwordref.current.value, otpref.current.value,emailref.current.value )
   };
 
   const handleOtp = async () => {
-      setOtpHidden(false);
-      const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/otp`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({email: emailref.current.value})
-      });
-      const json = await response.json();
-      if(json.success){
-        updateAlert(json.info, "success");
-      }else{
-        updateAlert(json.error, "danger");
-      }
+    setOtpHidden(false);
+    sendOtp(emailref.current.value);
   }
 
 

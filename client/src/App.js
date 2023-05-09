@@ -17,6 +17,7 @@ import Signup from "./pages/Signup/Signup";
 // Importing states for context
 import LinkState from "./context/links/LinkState";
 import AlertState from "./context/alerts/AlertState";
+import AuthState from "./context/auth/AuthState";
 
 function App() {
   const [progress,setProgress] = useState(0);
@@ -31,9 +32,9 @@ function App() {
       <AlertState>
         <LinkState setProgress={setProgress}>
           <Router>
+           <AuthState>
             <div className="mainContainer">
               <Navbar />
-              
               <Alert />
               <div>
                 <Routes>
@@ -46,8 +47,9 @@ function App() {
               </div>
               <Footer />
             </div>
+            </AuthState>
           </Router>
-        </LinkState>
+        </LinkState> 
       </AlertState>
     </>
   );
