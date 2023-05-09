@@ -2,15 +2,12 @@ import React, { useContext, useRef } from "react";
 import Button from "../../components/Button/Button";
 import "./Login.css";
 import "../../Glow.css";
-import {useNavigate} from 'react-router-dom';
-import AlertContext from '../../context/alerts/alertContext'
+import AuthContext from "../../context/auth/AuthContext";
 
 const Login = () => {
-  const navigate = useNavigate();
-
   // Importing alert context
-  const contextAlert = useContext(AlertContext);
-  const {updateAlert} = contextAlert;
+  const contextAuth = useContext(AuthContext);
+  const {login} = contextAuth;
 
   // Creating refs to handle values
   const usernameref = useRef(null);
@@ -18,23 +15,7 @@ const Login = () => {
 
 
   const handleClick = async () => {
-    // Doing a API CALL
-    const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/login`, {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({username: usernameref.current.value, password: passwordref.current.value})
-    });
-    const json = await response.json();
-    if(json.success){
-      localStorage.setItem('lmltoken', json.authtoken);
-      localStorage.setItem('username', json.username);
-      navigate('/');
-      updateAlert("Logged in as "+json.username, "success");
-    }else{
-      updateAlert(json.error, "danger");
-    }
+    login(usernameref.current.value, passwordref.current.value)
   };
 
 
