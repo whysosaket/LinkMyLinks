@@ -2,11 +2,11 @@
 
 .links-section {
   margin: 2rem 1rem;
-  display: inline block;
+  display: inline-block;
 }
 
 .link-item {
-  margin: 1rem 0.5rem;
+  margin: 1rem 1.5rem;
   padding: 2rem;
   max-width: 40%;
   min-width: 30%;
@@ -14,18 +14,22 @@
   border: 1px black solid;
   border-radius: 10px;
   text-align: left;
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/716/618/440/gray-white-triangle-pattern-wallpaper-preview.jpg");
+  
 }
 
 .link-item p {
   font-size: 0.8rem;
-  color: darkgrey;
+  color: rgb(153, 151, 151);
 }
 
 .button-section {
   display: block;
   width: 100%;
 }
-
+.left-button{
+  float: right;
+}
 .space {
   margin-right: 2rem;
 }
@@ -33,11 +37,17 @@
 .cross {
   color: rgb(191, 0, 0);
 }
-
+.cross:hover{
+  color: rgb(255, 83, 83);
+  border-color: black;
+  border-radius: 2cm;
+}
 .cross:active{
   color: red;
 }
-
+.edit:hover , .green:hover{
+  color: rgb(99, 99, 99);
+}
 .edit {
   color: rgb(40, 40, 40);
 }

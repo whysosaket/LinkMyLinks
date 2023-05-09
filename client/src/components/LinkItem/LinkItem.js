@@ -26,8 +26,9 @@ const LinkItem = (props) => {
 
   return (
       <div className="link-item">
+      
         <div className="info">
-          <h6>{(title.length>30)?title.substring(0,29)+".....":title}</h6>
+          <h6 >{(title.length>30)?title.substring(0,29)+".....":title}</h6>
           <p>{(linkaddress.length>45)?linkaddress.substring(0,45)+".....":linkaddress}</p>
         </div>
 
@@ -35,8 +36,9 @@ const LinkItem = (props) => {
           <span onClick={()=>{openInNewTab(linkaddress)}}>
             <Button text="Open" />
             </span>
+          <span className="left-button">
           <button className="space" style={{visibility: "hidden"}}>.</button>
-          <span onClick={handleDelete}>
+          <span className="cross" onClick={handleDelete}>
           <i className="fa-solid fa-xmark fa-2xl space cross"></i>
           </span>
           <span onClick={handleEdit}>
@@ -45,6 +47,8 @@ const LinkItem = (props) => {
           <span onClick={handleCopy}>
           <i className="green fa-regular fa-clipboard fa-xl"></i>
           </span>
+          </span>
+          
         </div>
       </div>
   );
