@@ -8,20 +8,29 @@ const nodemailer = require("nodemailer");
 router.route("/").post(async (req, res) => {
     const { firstName, lastName, phone, email, message } = req.body;
     try {
-        let transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
-            },
-        });
-
-        let info = await transporter.sendMail({
-            from: process.env.EMAIL,
+        const mailOptions = {
+            from: 'Personal Contact Helper <' + process.env.EMAIL + '>',
             to: "saketaryan2018@gmail.com",
-            subject: "New Form Submission",
-            text: `Name: ${firstName} ${lastName}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`,
-        });
+            subject: 'New Form Submission',
+            html: `
+              <h4>First Name: ${firstName}</h4>
+                <h4>Last Name: ${lastName}</h4>
+                <h4>Phone: ${phone}</h4>
+                <h4>Email: ${email}</h4>
+                <h4>Message: ${message}</h4>
+            `
+          };
+          
+          transporter.sendMail(mailOptions, async function(error, info){
+            if (error) {
+              console.log(error);
+              res.json({error: "Something went wrong"});
+            } else {
+              await Otp.create({email: email1, otp});
+              return res.json({success: true, message: "OTP sent successfully"});
+            }
+          }
+          );
         return res.json({ success: true, info: "Form Submitted Successfully" });
     } catch (error) {
         console.log(error);
