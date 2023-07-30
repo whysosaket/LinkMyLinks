@@ -8,6 +8,15 @@ const nodemailer = require("nodemailer");
 router.route("/").post(async (req, res) => {
     const { firstName, lastName, phone, email, message } = req.body;
     try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.EMAIL,
+              pass: process.env.EMAIL_PASSWORD
+            },
+            secure: true
+    
+          });
         const mailOptions = {
             from: 'Personal Contact Helper <' + process.env.EMAIL + '>',
             to: "saketaryan2018@gmail.com",
