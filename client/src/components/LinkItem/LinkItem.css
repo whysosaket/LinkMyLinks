@@ -6,16 +6,14 @@
 }
 
 .link-item {
-  margin: 1rem 1.5rem;
+  margin: 1rem 1rem;
   padding: 2rem;
-  max-width: 40%;
+  max-width: 30%;
   min-width: 30%;
   display: inline-block;
   border: 1px black solid;
   border-radius: 10px;
   text-align: left;
-  background-image: url("https://c4.wallpaperflare.com/wallpaper/716/618/440/gray-white-triangle-pattern-wallpaper-preview.jpg");
-  
 }
 
 .link-item p {

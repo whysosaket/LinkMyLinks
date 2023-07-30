@@ -1,7 +1,7 @@
 import AuthContext from "./AuthContext";
 import React, { useContext } from "react";
 import {useNavigate} from 'react-router-dom';
-import AlertContext from '../../context/alerts/alertContext';
+import AlertContext from '../alerts/alertContext';
 
 const AuthState = (props) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const AuthState = (props) => {
 
   const login = async (username, password) => {
     // Doing a API CALL
-    const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/login`, {
+    const response = await fetch(`${import.meta.env.VITE_HOST}/api/auth/login`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const AuthState = (props) => {
 
   const signup = async (name, username, password, otp, email) => {
     // Doing a API CALL
-    const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/createuser`, {
+    const response = await fetch(`${import.meta.env.VITE_HOST}/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const AuthState = (props) => {
   };
 
   const sendOtp = async (email) => {
-      const response = await fetch(`${process.env.REACT_APP_HOST}/api/auth/otp`, {
+      const response = await fetch(`${import.meta.env.VITE_HOST}/api/auth/otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

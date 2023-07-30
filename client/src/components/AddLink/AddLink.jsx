@@ -7,7 +7,7 @@ import "./AddLink.css";
 import "./Modal.css";
 
 const AddLink = () => {
-   // const host = process.env.REACT_APP_HOST;
+   // const host = import.meta.env.VITE_HOST;
 
   const openModal = useRef(null);
   const closeModal = useRef(null);

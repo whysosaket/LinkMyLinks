@@ -57,10 +57,7 @@ const Links = () => {
       <div className="links">
         
         {links.map((link, index) => {
-          
-          
           return (
-            
             <LinkItem
               link={link}
               key={index}

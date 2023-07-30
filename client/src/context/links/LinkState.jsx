@@ -3,7 +3,7 @@ import AlertContext from "../alerts/alertContext";
 import LinkContext from "./linkContext";
 
 const LinkState = (props) => {
-  const host = process.env.REACT_APP_HOST;
+  const host = import.meta.env.VITE_HOST;
 
   const [links, setLinks] = useState([]);
 
