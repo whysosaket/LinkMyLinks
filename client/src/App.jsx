@@ -32,7 +32,7 @@ function App() {
       <AlertState>
         <LinkState setProgress={setProgress}>
           <Router>
-           <AuthState>
+           <AuthState setProgress={setProgress}>
             <div className="mainContainer">
               <Navbar />
               <Alert />

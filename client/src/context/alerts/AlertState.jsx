@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 import AlertContext from "./alertContext";
+import { toast } from 'react-toastify';
 
 const AlertState = (props) => {
 
-  const [alert, setAlert] = useState("");
-  const [visible, setVisible] = useState("d-none");
-  const [type, setType] = useState("primary");
-
   // Set Alert
   const updateAlert = (text, type)=> {
-    setAlert(text);
-    setVisible("");
-    if(type) setType(type);
-    setTimeout(()=>{
-      setAlert("");
-      setType("primary");
-      setVisible("d-none")
-    }, 4300);
+   if(type=="danger"){
+      toast.error(text);
+    }else if(type=="success"){
+      toast.success(text);
+    }else if(type=="warning"){
+      toast.warning(text);
+    }else{
+      toast.info(text);
+    }
   };
 
   return (
-    <AlertContext.Provider value={{ alert, updateAlert, visible, type}}>
+    <AlertContext.Provider value={{ updateAlert}}>
       {props.children}
     </AlertContext.Provider>
   );

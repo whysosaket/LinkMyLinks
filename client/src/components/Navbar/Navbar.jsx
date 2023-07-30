@@ -1,9 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import React from "react";
+import React, {useContext} from "react";
+import LinkContext from "../../context/links/linkContext";
 
 const Navbar = () => {
   let location = useLocation();
   let navigate = useNavigate();
+  const { clearLinks } = useContext(LinkContext);
 
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -85,6 +87,7 @@ const Navbar = () => {
                 localStorage.removeItem('lmltoken');
                 localStorage.removeItem("username");
                 navigate("/login");
+                clearLinks();
               }}
             >
               Logout

@@ -10,6 +10,7 @@ const AuthState = (props) => {
   const {updateAlert} = contextAlert;
 
   const login = async (username, password) => {
+    props.setProgress(30);
     // Doing a API CALL
     const response = await fetch(`${import.meta.env.VITE_HOST}/api/auth/login`, {
       method: 'POST', 
@@ -18,6 +19,7 @@ const AuthState = (props) => {
       },
       body: JSON.stringify({username: username, password: password})
     });
+    props.setProgress(60);
     const json = await response.json();
     if(json.success){
       localStorage.setItem('lmltoken', json.authtoken);
@@ -27,10 +29,12 @@ const AuthState = (props) => {
     }else{
       updateAlert(json.error, "danger");
     }
+    props.setProgress(100);
   };
 
   const signup = async (name, username, password, otp, email) => {
     // Doing a API CALL
+    props.setProgress(30);
     const response = await fetch(`${import.meta.env.VITE_HOST}/api/auth/createuser`, {
       method: "POST",
       headers: {
@@ -44,6 +48,7 @@ const AuthState = (props) => {
         email: email,
       }),
     });
+    props.setProgress(60);
     const json = await response.json();
     if (json.success) {
       navigate("/login");
@@ -51,9 +56,11 @@ const AuthState = (props) => {
     } else {
       updateAlert(json.error, "danger");
     }
+    props.setProgress(100);
   };
 
   const sendOtp = async (email) => {
+    props.setProgress(30);
       const response = await fetch(`${import.meta.env.VITE_HOST}/api/auth/otp`, {
         method: 'POST',
         headers: {
@@ -61,12 +68,14 @@ const AuthState = (props) => {
         },
         body: JSON.stringify({email: email})
       });
+      props.setProgress(60);
       const json = await response.json();
       if(json.success){
         updateAlert(json.info, "success");
       }else{
         updateAlert(json.error, "danger");
       }
+      props.setProgress(100);
   }
 
   return (

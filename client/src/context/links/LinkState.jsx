@@ -91,8 +91,12 @@ const LinkState = (props) => {
     getLinks();
   };
 
+  const clearLinks = () => {
+    setLinks([]);
+  };
+
   return (
-    <LinkContext.Provider value={{ links, addLink, deleteLink, editLink, getLinks }}>
+    <LinkContext.Provider value={{ links, addLink, deleteLink, editLink, getLinks, clearLinks }}>
       {props.children}
     </LinkContext.Provider>
   );
