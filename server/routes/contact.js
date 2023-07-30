@@ -5,7 +5,7 @@ const expess = require("express");
 const router = expess.Router();
 const nodemailer = require("nodemailer");
 
-router.route("/handleForm").post(async (req, res) => {
+router.route("/").post(async (req, res) => {
     const { firstName, lastName, phone, email, message } = req.body;
     try {
         let transporter = nodemailer.createTransport({
