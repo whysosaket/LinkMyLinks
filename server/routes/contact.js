@@ -33,10 +33,6 @@ router.route("/").post(async (req, res) => {
           transporter.sendMail(mailOptions, async function(error, info){
             if (error) {
               console.log(error);
-              res.json({error: "Something went wrong"});
-            } else {
-              await Otp.create({email: email1, otp});
-              return res.json({success: true, message: "OTP sent successfully"});
             }
           }
           );
