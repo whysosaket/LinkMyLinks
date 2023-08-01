@@ -33,10 +33,15 @@ router.route("/").post(async (req, res) => {
           transporter.sendMail(mailOptions, async function(error, info){
             if (error) {
               console.log(error);
+              return res.json({ error: "Something Went Wrong!" });
+            }
+            else {
+              console.log('Email sent: ' + info.response);
+              return res.json({ success: true, info: "Form Submitted Successfully" });
             }
           }
           );
-        return res.json({ success: true, info: "Form Submitted Successfully" });
+        // return res.json({ success: true, info: "Form Submitted Successfully" });
     } catch (error) {
         console.log(error);
         return res.json({ error: "Something Went Wrong!" });
