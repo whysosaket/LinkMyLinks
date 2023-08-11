@@ -8,8 +8,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <h1 className="font-semibold text-red-400 text-center">Hello World</h1>
-      <Links />
+      <div className='my-4'>
+        <Links />
+      </div>
       <Footer />
     </>
   )

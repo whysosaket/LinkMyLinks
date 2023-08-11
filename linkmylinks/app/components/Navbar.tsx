@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
      <header className="header sticky top-0 bg-white dark:bg-dark1 text-white shadow-md flex items-center justify-between px-8 py-02">
   {/* logo */}
-  <h1 className="w-3/12 flex justify-start my-auto">
+  <h1 className="w-3/12 flex justify-start my-auto select-none">
       <svg
         viewBox="0 0 48 31"
         className="h-6 w-auto hover:text-green-500 duration-200 my-auto mx-2"
@@ -25,10 +25,10 @@ const Navbar = () => {
   <nav className="nav font-semibold text-lg hidden md:block">
     <ul className="flex items-center">
       <li className="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
-        <Link href="/">Dashboard</Link>
+        <Link href="/">Home</Link>
       </li>
       <li className="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
-        <Link href="/">Profile</Link>
+        <Link href="/">Lists</Link>
       </li>
       <li className="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
         <Link href="/controller">Settings</Link>

@@ -5,7 +5,7 @@ import React from 'react'
 const LinkCard = () => {
   return (
     <>
-    <div className='mx-2 w-1/3 border rounded-md p-4 bg-dark1 text-white'>
+    <div className='mx-2 w-1/4 border rounded-md p-4 bg-dark1 text-white'>
         <div className="my-2">
           <div className="flex justify-between ">
             <h1 className="font-semibold">Google</h1>
