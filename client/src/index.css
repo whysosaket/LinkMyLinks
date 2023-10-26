@@ -18,6 +18,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Montserrat', sans-serif;
+  background-color: rgb(185, 232, 232);
 }
 
 code {
