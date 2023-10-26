@@ -91,12 +91,31 @@ const LinkState = (props) => {
     getLinks();
   };
 
+
+  // fetch userlinks
+  const getUserLinks = async (username) => {
+    // Doing a API CALL
+    props.setProgress(30);
+    const response = await fetch(`${host}/api/link/fetchalllinks/${username}`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    props.setProgress(60);
+    const json = await response.json();
+    if(json.success) setLinks(json.links);
+    props.setProgress(100);
+  };
+
+
+  // Clear Links
   const clearLinks = () => {
     setLinks([]);
   };
 
   return (
-    <LinkContext.Provider value={{ links, addLink, deleteLink, editLink, getLinks, clearLinks }}>
+    <LinkContext.Provider value={{ links, addLink, deleteLink, editLink, getLinks, clearLinks, getUserLinks }}>
       {props.children}
     </LinkContext.Provider>
   );

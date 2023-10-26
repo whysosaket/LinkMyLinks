@@ -18,6 +18,7 @@ import Signup from "./pages/Signup/Signup";
 import LinkState from "./context/links/LinkState";
 import AlertState from "./context/alerts/AlertState";
 import AuthState from "./context/auth/AuthState";
+import UserLinks from "./pages/UserLinks/UserLinks";
 
 function App() {
   const [progress,setProgress] = useState(0);
@@ -41,8 +42,9 @@ function App() {
                   <Route exact path="/" element={<Home />}></Route>
                   <Route exact path="/lists" element={<Lists />}></Route>
                   <Route path="/about" element={<About />}></Route>
-                  <Route path="/login" element={<Login />}></Route>
-                  <Route path="/signup" element={<Signup />}></Route>
+                  <Route exact path="/login" element={<Login />}></Route>
+                  <Route exact path="/signup" element={<Signup />}></Route>
+                  <Route path="/user" element={<UserLinks />}></Route>
                 </Routes>
               </div>
               <Footer />

@@ -1,0 +1,73 @@
+/*This is for the Link Item*/
+
+.links-section {
+  margin: 2rem 1rem;
+  display: inline-block;
+}
+
+.link-item {
+  margin: 1rem 1rem;
+  padding: 2rem;
+  max-width: 30%;
+  min-width: 30%;
+  display: inline-block;
+  border: 1px black solid;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.link-item p {
+  font-size: 0.8rem;
+  color: rgb(153, 151, 151);
+}
+
+.button-section {
+  display: block;
+  width: 100%;
+}
+.left-button{
+  float: right;
+}
+.space {
+  margin-right: 2rem;
+}
+
+.cross {
+  color: rgb(191, 0, 0);
+}
+.cross:hover{
+  color: rgb(255, 83, 83);
+  border-color: black;
+  border-radius: 2cm;
+}
+.cross:active{
+  color: red;
+}
+.edit:hover , .green:hover{
+  color: rgb(99, 99, 99);
+}
+.edit {
+  color: rgb(40, 40, 40);
+}
+
+.edit:active{
+  color: green;
+}
+
+.green:active{
+  color: rgb(0, 222, 0);
+}
+
+
+@media (max-aspect-ratio: 11/10){
+    .link-item{
+        max-width: 100%;
+        display: block;
+        margin: 2rem 0.5rem;
+        padding: 1rem;
+    }
+
+    .links-section{
+      padding-top: 1rem;
+    }
+}

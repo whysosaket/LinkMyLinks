@@ -13,19 +13,52 @@ const Link = require("../models/Link");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-router.route("/fetchalllinks").get(fetchuser, async (req, res) => {
+router.route("/fetchalllinks/:userid").get(fetchuser, async (req, res) => {
   let success = false;
-
-  // Validating if the account exist or not
-  const user = await User.findById(req.user.id);
-  if (!user) {
-    return res.status(400).json({ success, error: "Could Not Find User!" });
-  }
-
   try {
-    const links = await Link.find({ user: req.user.id });
-    success = true;
-    return res.json({ success, links });
+    
+    if(req.user.id != "public"){
+      let user = await User.findById(req.user.id);
+
+      if (req.params.userid != null) {
+        user = await User.findOne({username: req.params.userid});
+      }
+
+      if (!user) {
+        return res.status(400).json({ success, error: "Could Not Find User!" });
+      }
+
+      let links = await Link.find({ user: req.user.id });
+
+      if (req.params.userid != null) {
+        // filter public links
+        links = links.filter((link) => {
+          return link.public;
+        });
+      }
+      
+      success = true;
+      return res.json({ success, links });
+
+    }else{
+
+      const user = await User.findOne({username: req.params.userid});
+
+      if (!user) {
+        return res.status(400).json({ success, error: "Could Not Find User!" });
+      }
+
+      let links = await Link.find({ user: user._id });
+
+      // filter public links
+      links = links.filter((link) => {
+        return link.public;
+      });
+
+      success = true;
+      return res.json({ success, links });
+    }
+    
   } catch (error) {
     console.log(error);
     return res.json({ error: "Something Went Wrong!" });
