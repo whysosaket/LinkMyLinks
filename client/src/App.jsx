@@ -24,6 +24,7 @@ function App() {
   const [progress,setProgress] = useState(0);
   return (
     <>
+      <img src="./images/bgpattern.svg" alt="bgpattern" className="bgpattern" />
       <LoadingBar
                 color='#f11946'
                 progress={progress}

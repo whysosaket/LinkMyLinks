@@ -14,6 +14,7 @@
   border: 1px black solid;
   border-radius: 10px;
   text-align: left;
+  background-color: rgb(255, 252, 248);
 }
 
 .link-item p {
