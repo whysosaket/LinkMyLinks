@@ -156,6 +156,7 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
     if (linkaddress) newLink.linkaddress = linkaddress;
     if (list) newLink.list = list;
     if (isPublic) newLink.public = isPublic;
+    else newLink.public = false;
 
     // find a new link to be updated and then update it
     let link = await Link.findById(req.params.id);

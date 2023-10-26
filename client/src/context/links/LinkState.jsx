@@ -13,6 +13,10 @@ const LinkState = (props) => {
 
   // Get all links
   const getLinks = async () => {
+    if(localStorage.getItem('lmltoken') === null) {
+      updateAlert("Please Login or Signup to Save or View Links", "warning");
+      return;
+    }
     // Doing a API CALL
     try{
     props.setProgress(30);
@@ -36,6 +40,10 @@ const LinkState = (props) => {
 
   // Add a new Link
   const addLink = async (title, linkaddress, list, isPublic) => {
+    if(localStorage.getItem('lmltoken') === null) {
+      updateAlert("Please Login First!", "danger");
+      return;
+    }
     // Doing a API CALL
     const response = await fetch(`${host}/api/link/addlink`, {
       method: 'POST', 
