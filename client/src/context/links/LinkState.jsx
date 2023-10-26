@@ -14,6 +14,7 @@ const LinkState = (props) => {
   // Get all links
   const getLinks = async () => {
     // Doing a API CALL
+    try{
     props.setProgress(30);
     const response = await fetch(`${host}/api/link/fetchalllinks`, {
       method: 'GET', 
@@ -26,6 +27,10 @@ const LinkState = (props) => {
     const json = await response.json();
     if(json.success) setLinks(json.links);
     props.setProgress(100);
+    }catch(error){
+      console.log(error);
+      props.setProgress(100);
+    }
   };
 
 

@@ -18,11 +18,10 @@ router.route("/fetchalllinks/:userid").get(fetchuser, async (req, res) => {
   try {
     
     if(req.user.id != "public"){
-      let user = await User.findById(req.user.id);
 
-      if (req.params.userid != null) {
-        user = await User.findOne({username: req.params.userid});
-      }
+      
+      const user = await User.findOne({username: req.params.userid});
+      
 
       if (!user) {
         return res.status(400).json({ success, error: "Could Not Find User!" });
@@ -30,12 +29,10 @@ router.route("/fetchalllinks/:userid").get(fetchuser, async (req, res) => {
 
       let links = await Link.find({ user: req.user.id });
 
-      if (req.params.userid != null) {
         // filter public links
         links = links.filter((link) => {
           return link.public;
         });
-      }
       
       success = true;
       return res.json({ success, links });
@@ -58,6 +55,28 @@ router.route("/fetchalllinks/:userid").get(fetchuser, async (req, res) => {
       success = true;
       return res.json({ success, links });
     }
+    
+  } catch (error) {
+    console.log(error);
+    return res.json({ error: "Something Went Wrong!" });
+  }
+});
+
+router.route("/fetchalllinks").get(fetchuser, async (req, res) => {
+  let success = false;
+  try {
+    
+    
+      let user = await User.findById(req.user.id);
+
+      if (!user) {
+        return res.status(400).json({ success, error: "Could Not Find User!" });
+      }
+
+      let links = await Link.find({ user: req.user.id });
+      
+      success = true;
+      return res.json({ success, links });
     
   } catch (error) {
     console.log(error);
