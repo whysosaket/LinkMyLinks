@@ -22,7 +22,7 @@ const Greet = () => {
       <div className="container">
         <div>
           <button onClick={handleLoginClick} className="button log">Login</button>
-          <button onClick={handleSignupClick} className="button reg">Sign up</button>
+          <button onClick={handleSignupClick} className="button reg">Sign up</button> 
           <p>
             Made with <span>❤</span> by{" "}
             <a href="https://www.instagram.com/saketaryann/">@saketaryann</a>.

@@ -85,7 +85,7 @@ router.route("/fetchalllinks").get(fetchuser, async (req, res) => {
 router.route("/addlink").post(
   [
     body("title", "TitleUsername cannot be less than 6 characters").isLength({
-      min: 4,
+      min: 1,
     }),
     body(
       "linkaddress",
