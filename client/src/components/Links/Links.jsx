@@ -36,7 +36,6 @@ const Links = () => {
   };
 
   const handleEditLink = () => {
-    console.log(link);
     editLink(link._id, link.title, link.linkaddress, link.list, link.isPublic);
     closeModal.current.click();
     updateLink({ _id: "", title: "", linkaddress: "", list: "", isPublic: link.isPublic});

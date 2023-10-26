@@ -5,9 +5,13 @@ import './LinkItem.css'
 const LinkItem = (props) => {
 
   const {_id, title, linkaddress, list } = props.link
+  const[deleteItemMessage, setDeleteItemMessage] = React.useState(false);
 
   const handleDelete = ()=>{
-    props.deleteLink(_id);
+    setDeleteItemMessage(true);
+    setTimeout(()=>{
+      setDeleteItemMessage(false);
+    }, 2000)
   }
 
   const openInNewTab = url => {
@@ -23,6 +27,10 @@ const LinkItem = (props) => {
     props.handleForeignClick(_id, title, linkaddress, list, props.link.public)
   }
 
+  const handleDeleteMessage = ()=>{
+    props.deleteLink(_id);
+  }
+
 
   return (
       <div className="link-item">
@@ -31,6 +39,7 @@ const LinkItem = (props) => {
           <h6 >{(title.length>30)?title.substring(0,29)+".....":title}</h6>
           <p>{(linkaddress.length>45)?linkaddress.substring(0,45)+".....":linkaddress}</p>
           <p>{props.link.public?"Public":"Private"}</p>
+          <p style={{color: "red", cursor: "pointer"}} onClick={handleDeleteMessage}>{deleteItemMessage?"Click Me To Confirm Delete":""}</p>
         </div>
 
         <div className="buttons-section">
