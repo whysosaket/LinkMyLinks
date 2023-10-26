@@ -83,7 +83,7 @@ const LinkState = (props) => {
         'Content-Type': 'application/json',
         'auth-token': localStorage.getItem('lmltoken')
       },
-      body: JSON.stringify({title, linkaddress, list, public: isPublic}) 
+      body: JSON.stringify({title, linkaddress, list, isPublic}) 
     });
 
     const json = await response.json();

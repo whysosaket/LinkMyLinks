@@ -18,10 +18,8 @@ router.route("/fetchalllinks/:userid").get(fetchuser, async (req, res) => {
   try {
     
     if(req.user.id != "public"){
-
-      
-      const user = await User.findOne({username: req.params.userid});
-      
+ 
+      const user = await User.findOne({username: req.params.userid});      
 
       if (!user) {
         return res.status(400).json({ success, error: "Could Not Find User!" });
@@ -149,7 +147,7 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
   let success = false;
 
   try {
-    const { title, linkaddress, list } = req.body;
+    const { title, linkaddress, list, isPublic } = req.body;
 
     // Create a new link object
     let newLink = {};
@@ -157,6 +155,7 @@ router.route("/updatelink/:id").put(fetchuser, async (req, res) => {
     if (title) newLink.title = title;
     if (linkaddress) newLink.linkaddress = linkaddress;
     if (list) newLink.list = list;
+    if (isPublic) newLink.public = isPublic;
 
     // find a new link to be updated and then update it
     let link = await Link.findById(req.params.id);

@@ -24,6 +24,7 @@ const UserLinkItem = (props) => {
         <div className="info">
           <h6 >{(title.length>30)?title.substring(0,29)+".....":title}</h6>
           <p>{(linkaddress.length>45)?linkaddress.substring(0,45)+".....":linkaddress}</p>
+          <p>{props.link.public?"Public":"Private"}</p>
         </div>
 
         <div className="buttons-section">

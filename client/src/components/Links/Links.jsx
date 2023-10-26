@@ -36,9 +36,10 @@ const Links = () => {
   };
 
   const handleEditLink = () => {
+    console.log(link);
     editLink(link._id, link.title, link.linkaddress, link.list, link.isPublic);
     closeModal.current.click();
-    updateLink({ _id: "", title: "", linkaddress: "", list: "", isPublic: false});
+    updateLink({ _id: "", title: "", linkaddress: "", list: "", isPublic: link.isPublic});
   };
 
   const handleChange = (event) => {
@@ -146,6 +147,20 @@ const Links = () => {
                     value={link.list}
                     onChange={handleChange}
                     name="list"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="listname" className="form-label">
+                    Public
+                  </label>
+                  <input type="checkbox"
+                  className="form-check-input"
+                  id="public"
+                  placeholder="Public"
+                  autoComplete="off"
+                  name="isPublic"
+                  checked={link.isPublic}
+                  onChange={()=>{updateLink({...link, isPublic: !link.isPublic})}}
                   />
                 </div>
               </form>

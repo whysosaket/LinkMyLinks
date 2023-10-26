@@ -20,7 +20,7 @@ const LinkItem = (props) => {
   }
 
   const handleEdit = ()=>{
-    props.handleForeignClick(_id, title, linkaddress, list, false)
+    props.handleForeignClick(_id, title, linkaddress, list, props.link.public)
   }
 
 
@@ -30,6 +30,7 @@ const LinkItem = (props) => {
         <div className="info">
           <h6 >{(title.length>30)?title.substring(0,29)+".....":title}</h6>
           <p>{(linkaddress.length>45)?linkaddress.substring(0,45)+".....":linkaddress}</p>
+          <p>{props.link.public?"Public":"Private"}</p>
         </div>
 
         <div className="buttons-section">
