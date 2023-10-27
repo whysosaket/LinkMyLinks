@@ -11,7 +11,7 @@ const Navbar = () => {
           to="/"
           className="md:w-3/12 w-6/12 p-2 flex justify-start my-auto"
         >
-          {/* <img className="fill-orange-400" height={50} width={30} src="/vite.svg" /> */}
+          {/* <img className="fill-indigo-400" height={50} width={30} src="/vite.svg" /> */}
           {/* <Logo /> */}
           <span className={`my-auto font-bold`}>
             <span className="text-white">LinkMy</span>
@@ -23,13 +23,13 @@ const Navbar = () => {
         {/* navigation */}
         <nav className="nav font-semibold text-lg hidden md:block">
           <ul className="flex items-center">
-            <li className="p-4 border-b-2 border-orange-500 border-opacity-0 hover:border-opacity-100 hover:text-orange-500 duration-200 cursor-pointer active">
+            <li className="p-4 border-b-2 border-indigo-500 border-opacity-0 hover:border-opacity-100 hover:text-indigo-500 duration-200 cursor-pointer active">
               <Link to="/">Home</Link>
             </li>
-            <li className="p-4 border-b-2 border-orange-500 border-opacity-0 hover:border-opacity-100 hover:text-orange-500 duration-200 cursor-pointer">
-              <Link to="/profile">Profile</Link>
+            <li className="p-4 border-b-2 border-indigo-500 border-opacity-0 hover:border-opacity-100 hover:text-indigo-500 duration-200 cursor-pointer">
+              <Link to="/profile">List</Link>
             </li>
-            <li className="p-4 border-b-2 border-orange-500 border-opacity-0 hover:border-opacity-100 hover:text-orange-500 duration-200 cursor-pointer">
+            <li className="p-4 border-b-2 border-indigo-500 border-opacity-0 hover:border-opacity-100 hover:text-indigo-500 duration-200 cursor-pointer">
               <Link to="/about">About</Link>
             </li>
           </ul>
@@ -39,7 +39,7 @@ const Navbar = () => {
           {true ? (
             <Link
               to="/login"
-              className="bg-slate-700 hover:bg-slate-800 rounded-lg shadow-md px-4 py-2 font-semibold"
+              className="bg-slate-800 hover:bg-slate-800 rounded-lg shadow-md px-4 py-2 font-semibold"
             >
               Login
             </Link>

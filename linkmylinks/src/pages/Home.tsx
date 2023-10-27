@@ -5,7 +5,7 @@ import Head from '../Components/Head/Head'
 
 const Home = () => {
   return (
-    <div>
+    <div className='mb-48 md:mb-36'>
         {/* <Head /> */}
         <AddLinkFooter />
         <Links />
