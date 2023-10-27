@@ -5,7 +5,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="header bg-gray-900 text-white shadow-md flex items-center justify-between px-8 py-02">
+      <header className="header bg-gray-900 h-16 text-white shadow-md flex items-center justify-between px-8 py-02">
         {/* logo */}
         <Link
           to="/"
@@ -14,8 +14,8 @@ const Navbar = () => {
           {/* <img className="fill-orange-400" height={50} width={30} src="/vite.svg" /> */}
           {/* <Logo /> */}
           <span className={`my-auto font-bold`}>
-            <span className="text-orange-500">LinkMy</span>
-            <span className="text-white bg-orange-500">
+            <span className="text-white">LinkMy</span>
+            <span className="text-white">
               Links
             </span>
           </span>
