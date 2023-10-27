@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import _404 from "./pages/_404";
 import Background from "./assets/background.svg"
 import Loading from "./Components/Loading";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       {/* <Loader /> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         {/* <Route path="/solve" element={<Solve />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
