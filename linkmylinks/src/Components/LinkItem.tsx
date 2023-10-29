@@ -32,7 +32,7 @@ const LinkItem = (props: {delay: number}) => {
       </p>
       <div className="flex justify-between">
         <div className="my-2">
-          <button className="bg-slate-100 hover:bg-slate-50 rounded-lg shadow-md px-4 py-2 font-semibold">
+          <button className="bg-slate-100 hover:bg-slate-50 rounded-lg shadow-md px-4 py-2 font-semibold select-none">
             Open
           </button>
         </div>

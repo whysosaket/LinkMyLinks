@@ -9,7 +9,7 @@ const Login = () => {
         <div className="bg-gray-900 bg-opacity-0 flex items-center justify-center p-4 md:p-0">
           <div className="bg-gray-100 bg-opacity-40 text-gray-500 shadow-xl w-full overflow-hidden rounded-3xl my-16 md:my-0 md:rounded-none">
             <div className="md:flex w-full">
-              <motion.div initial={{x: 500, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 0.6}} className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
+              <motion.div initial={{x: 500, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 0.6}} className="hidden md:block w-1/2 bg-indigo-500 bg-opacity-100 py-10 px-10">
                 <img src={SignupImage} />
               </motion.div>
               <motion.div initial={{x: -500, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 0.6}} className="w-full md:w-1/2 py-10 px-5 md:px-10">

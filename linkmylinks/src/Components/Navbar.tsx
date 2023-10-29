@@ -1,11 +1,27 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import GlitchLogo from "./GlitchLogo";
 
 
 const Navbar = () => {
 
+  const [top, setTop] = useState<boolean>(true)
+
+  // detect whether user has scrolled the page down by 10px
+  const scrollHandler = () => {
+    window.pageYOffset > 10 ? setTop(false) : setTop(true)
+  }  
+
+  useEffect(() => {
+    scrollHandler()
+    window.addEventListener('scroll', scrollHandler)
+    return () => window.removeEventListener('scroll', scrollHandler)
+  }, [top])
+
   return (
     <>
-      <header className="header bg-gray-900 h-16 text-white shadow-md flex items-center justify-between px-8 py-02">
+      {/* <header className="header bg-gray-900 h-16 text-white shadow-md flex items-center justify-between px-8 py-02"> */}
+      <header className={`header px-8 py-02 fixed top-0 flex items-center h-16 justify-between w-full z-30 bg-opacity-80 transition duration-300 ease-in-out ${!top ? 'bg-gray-900 backdrop-blur-sm shadow-lg text-white' : 'text-black'}`}>
         {/* logo */}
         <Link
           to="/"
@@ -13,11 +29,8 @@ const Navbar = () => {
         >
           {/* <img className="fill-indigo-400" height={50} width={30} src="/vite.svg" /> */}
           {/* <Logo /> */}
-          <span className={`my-auto font-bold`}>
-            <span className="text-white">LinkMy</span>
-            <span className="text-white">
-              Links
-            </span>
+          <span className={`${!top?"text-white":"text-black"} my-auto font-bold text-xl`}>
+            <GlitchLogo text="LinkMyLinks"/>
           </span>
         </Link>
         {/* navigation */}
@@ -39,13 +52,13 @@ const Navbar = () => {
           {true ? (
             <Link
               to="/login"
-              className="bg-slate-800 hover:bg-slate-800 rounded-lg shadow-md px-4 py-2 font-semibold"
+              className={`rounded-md shadow-md px-4 py-2 font-semibold ${top?"bg-gray-100 text-black hover:bg-gray-300":"bg-slate-800 hover:bg-slate-800"}`}
             >
               Login
             </Link>
           ) : (
             <button
-              className="bg-slate-900 hover:bg-slate-300rounded-lg shadow-md px-4 py-2 font-semibold"
+            className={`rounded-md shadow-md px-4 py-2 font-semibold ${top?"bg-gray-100 text-black hover:bg-gray-300":"bg-slate-800 hover:bg-slate-800"}`}
             >
               Logout
             </button>

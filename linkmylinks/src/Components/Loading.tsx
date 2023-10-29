@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './Head/Head.css'
+import GlitchLogo from "./GlitchLogo";
 
 const items = ['Loading', 'LinkMyLinks'];
 
@@ -21,9 +21,7 @@ const Loading = () => {
     <div className="bg-gray-100 z-50 min-h-screen min-w-full absolute flex items-center justify-center">
       <div role="status" className=" flex justify-center">
         {/* <span className="font-semibold">{items[itemState]}</span> */}
-        <div className="glitch-wrapper">
-            <div className="glitch">{items[itemState]}</div>
-        </div>
+        <GlitchLogo text={items[itemState]} />
         <svg
           aria-hidden="true"
           className="w-6 h-6 mx-2 text-gray-200 animate-spin fill-blue-600"

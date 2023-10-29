@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* #c6cbfc */
+
 body{
-    background-color: #c6cbfc;
+    background-color: #d6e1fc;
     background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
 }

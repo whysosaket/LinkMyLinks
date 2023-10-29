@@ -6,6 +6,7 @@ import Background from "./assets/background.svg"
 import Loading from "./Components/Loading";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Welcome from "./pages/Welcome";
 
 
 function App() {
@@ -13,16 +14,16 @@ function App() {
   return (
     <>
     {/* <Loading /> */}
-    <div className="">
-      {/* <img src={Background} className='absolute -z-10 overflow-hidden'/> */}
-    </div>
     <Router>
       <Navbar />
+      <div className="mt-16">{" "}</div>
+      {/* <Nav2 /> */}
       {/* <Loader /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/welcome" element={<Welcome />} />
         {/* <Route path="/solve" element={<Solve />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
