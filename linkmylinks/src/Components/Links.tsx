@@ -3,27 +3,16 @@ import LinkItem from './LinkItem'
 
 const ListName = "Default"
 
+const links: number[] = [1,2,3,4,5,6,7,8]
+
 const Links = () => {
   return (
-    <div className='flex justify-center'>
+    <div className='flex flex-col justify-center'>
+      <h1 className='font-semibold text-4xl mx-auto md:w-5/6 my-4'>Default List</h1>
         <div className='mx-auto flex flex-wrap md:w-5/6'>
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
-            <LinkItem />
+            {links.map((link, index) => (
+              <LinkItem key={index} delay={link} />
+            ))}
         </div>
     </div>
   )
