@@ -6,8 +6,12 @@ const Signup = () => {
   return (
     <div>
       <>
-        <div className="bg-gray-900 bg-opacity-0 flex items-center justify-center p-4 md:p-0">
-          <div className="bg-gray-100 bg-opacity-40 text-gray-500 shadow-xl w-full overflow-hidden rounded-3xl my-16 md:my-0 md:rounded-none">
+        <motion.div 
+        initial={{scaleY: 0.58}}
+        animate={{scaleY: 1}}
+        transition={{duration: 0.04}}
+        className="bg-gray-900 bg-opacity-0 flex items-center justify-center p-4 md:p-0">
+          <div className="bg-gray-100 bg-opacity-40 text-gray-500 shadow-xl w-full overflow-hidden rounded-3xl my-0 md:rounded-none">
             <div className="md:flex w-full">
               
               <motion.div initial={{x: +500, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 0.6}} className="w-full md:w-1/2 py-10 px-5 md:px-10">
@@ -19,7 +23,7 @@ const Signup = () => {
                   <div className="flex -mx-3">
                     <div className="w-1/2 px-3 mb-5">
                       <label htmlFor="" className="text-xs font-semibold px-1">
-                        First name
+                       Name
                       </label>
                       <div className="flex">
                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -34,7 +38,7 @@ const Signup = () => {
                     </div>
                     <div className="w-1/2 px-3 mb-5">
                       <label htmlFor="" className="text-xs font-semibold px-1">
-                        Last name
+                        Username
                       </label>
                       <div className="flex">
                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -43,7 +47,7 @@ const Signup = () => {
                         <input
                           type="text"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="Smith"
+                          placeholder="johnsmith"
                         />
                       </div>
                     </div>
@@ -66,7 +70,7 @@ const Signup = () => {
                     </div>
                   </div>
                   <div className="flex -mx-3">
-                    <div className="w-full px-3 mb-12">
+                    <div className="w-full px-3 mb-5">
                       <label htmlFor="" className="text-xs font-semibold px-1">
                         Password
                       </label>
@@ -83,6 +87,30 @@ const Signup = () => {
                     </div>
                   </div>
                   <div className="flex -mx-3">
+                    <div className="w-full px-3 mb-12">
+                      <label htmlFor="" className="text-xs font-semibold px-1">
+                        Enter OTP
+                      </label>
+                      <div className="flex">
+                        <div className="flex w-full">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-email-outline text-gray-400 text-lg" />
+                        </div>
+                        <input
+                          type="otp"
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          placeholder="Enter OTP"
+                        />
+                        </div>
+                        <div className="w-2/3 flex justify-end">
+                            <button className="ml-5 bg-indigo-500 text-sm hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Send OTP</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  <div className="flex -mx-3">
                     <div className="w-full px-3 mb-5">
                       <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                         REGISTER NOW
@@ -97,7 +125,7 @@ const Signup = () => {
               </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </>
     </div>
   );

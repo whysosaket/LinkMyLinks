@@ -55,27 +55,27 @@ export default function Hero() {
           {/* Section header */}
           <div className="text-center pb-12 md:pb-16">
             <motion.h1
-              initial = {{y: 30, opacity: 0.6}}
+              initial = {{y: 80, opacity: 0.6}}
               animate = {{y: 0, opacity: 1}}
-              transition= {{duration: 0.6}}
+              transition= {{duration: 0.2}}
               className="text-4xl md:text-7xl font-extrabold leading-tighter tracking-tighter"
               data-aos="zoom-y-out"
             >
               Save your links with
             </motion.h1>
             <motion.h1 
-            initial = {{y: 10, opacity: 0.6}}
+            initial = {{y: 80, opacity: 0.6}}
             animate = {{y: 0, opacity: 1}}
-            transition= {{duration: 0.6}}
+            transition= {{duration: 0.4}}
             className="text-6xl font-extrabold my-4 md:mb-4 leading-tighter tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 md:text-8xl w-full mb-4">
               LinkMyLinks
             </motion.h1>
 
             <div className="max-w-3xl mx-auto">
               <motion.div
-              initial = {{y: 5, opacity: 0.3}}
+              initial = {{y: 80, opacity: 0.3}}
               animate = {{y: 0, opacity: 1}}
-              transition= {{duration: 0.6, delay: 0.2}}
+              transition= {{duration: 0.6}}
               className="px-6">
                 <p
                   className="text-xl text-gray-600 mb-8"
@@ -90,12 +90,12 @@ export default function Hero() {
               <div
                 className="max-w-xs mx-auto flex justify-center"
                 data-aos="zoom-y-out"
-                data-aos-delay="300"
+                data-aos-delay="800"
               >
                 <motion.div 
-                initial = {{y: 10, opacity: 0.3}}
+                initial = {{y: 80, opacity: 0.3}}
                 animate = {{y: 0, opacity: 1}}
-                transition= {{duration: 0.6}}
+                transition= {{duration: 0.8}}
                 >
                   <Link
                     to="/signup"
@@ -105,9 +105,9 @@ export default function Hero() {
                   </Link>
                 </motion.div>
                 <motion.div
-                initial = {{y: 10, opacity: 0.3}}
+                initial = {{y: 80, opacity: 0.3}}
                 animate = {{y: 0, opacity: 1}}
-                transition= {{duration: 0.6}}
+                transition= {{duration: 0.8}}
                 >
                   <a
                     className="px-3 py-3 rounded-lg m-2 font-semibold text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"

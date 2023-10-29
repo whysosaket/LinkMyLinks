@@ -29,8 +29,8 @@ const Navbar = () => {
         >
           {/* <img className="fill-indigo-400" height={50} width={30} src="/vite.svg" /> */}
           {/* <Logo /> */}
-          <span className={`${!top?"text-white":"text-black"} my-auto font-bold text-xl`}>
-            <GlitchLogo text="LinkMyLinks"/>
+          <span className={`${!top?"text-white":"leading-tighter tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400"} my-auto font-bold text-xl`}>
+            LinkMyLinks
           </span>
         </Link>
         {/* navigation */}
