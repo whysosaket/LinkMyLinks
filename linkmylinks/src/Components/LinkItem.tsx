@@ -6,13 +6,20 @@ import {
   AiOutlineUnlock,
 } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { useContext, useState } from "react";
+import LinkContext from "../context/links/linkContext";
 
 const LinkItem = (props: {delay: number, link: any}) => {
+
+  const {deleteLink} = useContext(LinkContext);
 
   const linkaddress = props.link.linkaddress;
   const list = props.link.list;
   const isPublic = props.link.public;
   const title = props.link.title;
+  const _id = props.link._id;
+
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const openInNewTab = (url:string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -21,7 +28,18 @@ const LinkItem = (props: {delay: number, link: any}) => {
   const handleCopy = ()=>{
     // Copy the text inside the text field
      navigator.clipboard.writeText(linkaddress);
- }
+  }
+
+  const handleDeleteLink = ()=>{
+    deleteLink(_id);
+  }
+
+  const expandDelete = ()=>{
+    setIsDeleteOpen(true);
+    setTimeout(()=>{
+      setIsDeleteOpen(false);
+    },2500)
+  }
 
   return (
     <motion.div
@@ -49,10 +67,12 @@ const LinkItem = (props: {delay: number, link: any}) => {
           </button>
         </div>
         <div className="my-auto flex">
+          <button onClick={expandDelete}>
           <AiOutlineDelete
             className="mx-1 hover:text-red-400"
             size={"1.3rem"}
           />
+          </button>
           <AiOutlineEdit
             className="mx-1 hover:text-yellow-600"
             size={"1.3rem"}
@@ -65,14 +85,11 @@ const LinkItem = (props: {delay: number, link: any}) => {
           </button>
         </div>
       </div>
-      <div className="my-auto hidden">
+      <div className={`my-auto ${isDeleteOpen?"block":"hidden"}`}>
         <hr className="h-2 my-1" />
         <h1 className="font-semibold text-sm">Are you sure?</h1>
         <div className="flex justify-end text-white md:my-2">
-          <button className="mx-2 md:mx-1 border-white hover:text-black hover:bg-white border px-3 py-2 md:px-2 md:py-1 rounded-lg">
-            Cancel
-          </button>
-          <button className="mx-2 md:mx-1 bg-red-500 border border-red-500 hover:text-red-500 hover:bg-transparent px-3 py-2 md:px-2 md:py-1 rounded-lg">
+          <button onClick={handleDeleteLink} className="mx-2 md:mx-1 bg-red-500 border border-red-500 hover:text-red-500 hover:bg-transparent px-3 py-2 md:px-2 md:py-1 rounded-lg">
             Delete
           </button>
         </div>
