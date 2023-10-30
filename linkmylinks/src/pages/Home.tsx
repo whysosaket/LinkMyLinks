@@ -7,12 +7,13 @@ import Loading from '../Components/Loading';
 
 const Home = () => {
   const navigate = useNavigate();
-  const {getLinks, links} = useContext(LinkContext);
+  const {getLinks, links, clearLinks} = useContext(LinkContext);
   const [loading, setLoading] = useState(false);
 
   const handleDataLoading = async ()=>{
+    clearLinks();
     setLoading(true);
-    getLinks();
+    await getLinks();
     setLoading(false);
   }
 
