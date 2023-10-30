@@ -6,21 +6,33 @@ import {
   AiOutlineUnlock,
 } from "react-icons/ai";
 import { motion } from "framer-motion";
-const name = "Hackodex - Github API alsjdajsdlkjaskljdlkaalksdjl";
-const link =
-  "https://api.github.com/search/issues?q=is:pr+archived:false+is:closed+label:hackodex2023-accepted&page=1&per_page=101";
 
-const LinkItem = (props: {delay: number}) => {
+const LinkItem = (props: {delay: number, link: any}) => {
+
+  const linkaddress = props.link.linkaddress;
+  const list = props.link.list;
+  const isPublic = props.link.public;
+  const title = props.link.title;
+
+  const openInNewTab = (url:string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopy = ()=>{
+    // Copy the text inside the text field
+     navigator.clipboard.writeText(linkaddress);
+ }
+
   return (
     <motion.div
-      initial={{ y: 500, zIndex: -1, opacity: 0 }}
+      initial={{ y: 500, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: (props.delay*1.0)/10.1 }}
       className="bg-gray-200 bg-opacity-30 py-2 px-6 m-4 rounded-md w-full md:w-72"
     >
       <h1 className="font-semibold flex justify-between items-center">
-        {name.slice(0, 28)}
-        {true ? (
+        {title.slice(0, 28)}
+        {!isPublic ? (
           <AiOutlineLock className="relative left-4 text-red-600 -z-10" />
         ) : (
           <AiOutlineUnlock className="relative left-4 text-green-600 -z-10" />
@@ -28,11 +40,11 @@ const LinkItem = (props: {delay: number}) => {
       </h1>
 
       <p className="text-gray-600 font-extralight text-sm my-2">
-        {link.slice(0, 35)}...
+        {linkaddress.slice(0, 35)}...
       </p>
       <div className="flex justify-between">
         <div className="my-2">
-          <button className="bg-slate-100 hover:bg-slate-50 rounded-lg shadow-md px-4 py-2 font-semibold select-none">
+          <button onClick={()=>openInNewTab(linkaddress)} className="bg-slate-100 hover:bg-slate-50 rounded-lg shadow-md px-4 py-2 font-semibold select-none">
             Open
           </button>
         </div>
@@ -45,10 +57,12 @@ const LinkItem = (props: {delay: number}) => {
             className="mx-1 hover:text-yellow-600"
             size={"1.3rem"}
           />
+          <button onClick={handleCopy}>
           <AiOutlineCopy
             className="mx-1 hover:text-green-500"
             size={"1.3rem"}
           />
+          </button>
         </div>
       </div>
       <div className="my-auto hidden">

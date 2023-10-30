@@ -32,7 +32,7 @@ function App() {
     {/* <ConfirmDelteModal /> */}
     {/* <AddLinkModal /> */}
     <AlertState>
-      <LinkState>
+      <LinkState setProgress={setProgress}>
         <AuthState setProgress={setProgress}>
           <Alert />
     <Router>

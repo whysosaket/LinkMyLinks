@@ -30,6 +30,7 @@ const LinkState = (props: any) => {
     props.setProgress(60);
     const json = await response.json();
     if(json.success) setLinks(json.links);
+    console.log(json.links);
     props.setProgress(100);
     }catch(error){
       console.log(error);

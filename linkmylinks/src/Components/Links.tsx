@@ -1,13 +1,12 @@
-import LinkItem from './LinkItem'
-const links: number[] = [1,2,3,4,5,6,7,8,9,11,12,13,14,55,12,44,12]
+import LinkItem from './LinkItem';
 
-const Links = () => {
+const Links = (props: {links: any}) => {
   return (
     <div className='flex flex-col justify-center'>
       <h1 className='font-semibold text-4xl mx-auto md:w-5/6 my-4'>Default List</h1>
         <div className='mx-auto flex flex-wrap md:w-5/6'>
-            {links.map((link, index) => (
-              <LinkItem key={index} delay={index} />
+            {props.links.map((link:any, index:number) => (
+              <LinkItem key={index} delay={index} link={link} />
             ))}
         </div>
     </div>
