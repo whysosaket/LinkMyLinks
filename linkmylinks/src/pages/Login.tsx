@@ -1,8 +1,33 @@
 import { Link } from "react-router-dom";
 import SignupImage from "../assets/signup.svg";
-import {motion} from "framer-motion"
+import {motion} from "framer-motion";
+import AuthContext from "../context/auth/AuthContext"
+import { useContext, useRef } from "react";
+import AlertContext from "../context/alerts/alertContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const {login} = useContext(AuthContext);
+  const {updateAlert} = useContext(AlertContext);
+  const navigate = useNavigate();
+
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleLogin = async ()=>{
+    const username:string= usernameRef.current?.value || "";
+    const password:string = passwordRef.current?.value || "";
+    if(username==""||password==""){
+      updateAlert("Please enter both username and password!");
+      return;
+    }
+    const res = await login(username, password);
+    if(res){
+      navigate("/");
+    }
+  }
+
   return (
     <div>
       <>
@@ -35,6 +60,7 @@ const Login = () => {
                           type="text"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="johnsmith"
+                          ref={usernameRef}
                         />
                       </div>
                     </div>
@@ -52,13 +78,14 @@ const Login = () => {
                           type="password"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="************"
+                          ref={passwordRef}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mb-5">
-                      <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                      <button onClick={handleLogin} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                         LOGIN
                       </button>
                     </div>

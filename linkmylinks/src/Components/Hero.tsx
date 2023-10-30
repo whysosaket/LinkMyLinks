@@ -109,12 +109,12 @@ export default function Hero() {
                 animate = {{y: 0, opacity: 1}}
                 transition= {{duration: 0.8}}
                 >
-                  <a
+                  <Link
                     className="px-3 py-3 rounded-lg m-2 font-semibold text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                    href="#0"
+                    to="/about"
                   >
-                    Learn more
-                  </a>
+                    About Me
+                  </Link>
                 </motion.div>
               </div>
             </div>

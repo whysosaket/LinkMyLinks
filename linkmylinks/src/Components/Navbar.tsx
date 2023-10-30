@@ -1,21 +1,24 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import GlitchLogo from "./GlitchLogo";
+import { useState, useEffect, useContext } from "react";
+import LinkContext from "../context/links/linkContext";
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
 
-  const [top, setTop] = useState<boolean>(true)
+  const [top, setTop] = useState<boolean>(true);
+  const {clearLinks} = useContext(LinkContext);
+  const navigate = useNavigate();
 
   // detect whether user has scrolled the page down by 10px
   const scrollHandler = () => {
-    window.pageYOffset > 10 ? setTop(false) : setTop(true)
+    window.pageYOffset > 10 ? setTop(false) : setTop(true);
   }  
 
   useEffect(() => {
-    scrollHandler()
-    window.addEventListener('scroll', scrollHandler)
-    return () => window.removeEventListener('scroll', scrollHandler)
+    scrollHandler();
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
   }, [top])
 
   return (
@@ -49,7 +52,7 @@ const Navbar = () => {
         </nav>
         {/* buttons -*/}
         <div className="w-6/12  md:w-3/12 flex justify-end">
-          {true ? (
+          {!localStorage.getItem("lmltoken")? (
             <Link
               to="/login"
               className={`rounded-md shadow-md px-4 py-2 font-semibold ${top?"bg-gray-100 text-black hover:bg-gray-300":"bg-slate-800 hover:bg-slate-800"}`}
@@ -58,6 +61,11 @@ const Navbar = () => {
             </Link>
           ) : (
             <button
+            onClick={()=> {
+              localStorage.removeItem("lmltoken");
+              clearLinks();
+              navigate("/welcome");
+            }}
             className={`rounded-md shadow-md px-4 py-2 font-semibold ${top?"bg-gray-100 text-black hover:bg-gray-300":"bg-slate-800 hover:bg-slate-800"}`}
             >
               Logout

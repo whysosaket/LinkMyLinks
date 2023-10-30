@@ -1,8 +1,52 @@
 import { Link } from "react-router-dom";
 import SignupImage from "../assets/signup.svg";
 import { motion } from "framer-motion";
+import { useContext, useState, useRef } from "react";
+import AuthContext from "../context/auth/AuthContext";
+import AlertContext from "../context/alerts/alertContext";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  // Importing alert context
+  const {signup,sendOtp} = useContext(AuthContext);
+  const {updateAlert} = useContext(AlertContext);
+
+  const [otpHidden, setOtpHidden] = useState(true);
+  const navigate = useNavigate();
+
+  // Creating refs to handle values
+  const usernameref = useRef<HTMLInputElement>(null);
+  const passwordref = useRef<HTMLInputElement>(null);
+  const nameref = useRef<HTMLInputElement>(null);
+  const emailref = useRef<HTMLInputElement>(null);
+  const otpref = useRef<HTMLInputElement>(null);
+
+  const handleClick = async () => {
+    const name:string = nameref.current?.value || "";
+    const username:string = usernameref.current?.value || "";
+    const password:string = passwordref.current?.value || "";
+    const otp:string = otpref.current?.value || "";
+    const email:string = emailref.current?.value || "";
+    if(email==""||username==""||password==""||otp==""||name==""){
+      updateAlert("Please fill all the fields to continue.","danger");
+      return;
+    }
+    const response = await signup(name, username, password, otp, email);
+    if(response){
+        navigate("/login")
+    }
+  };
+
+  const handleOtp = async () => {
+    const email:string = emailref.current?.value || "";
+    if(email==""){
+      updateAlert("Please Enter an email to get OTP.","danger");
+      return;
+    }
+    setOtpHidden(false);
+    sendOtp(email);
+  }
+
   return (
     <div>
       <>
@@ -33,6 +77,7 @@ const Signup = () => {
                           type="text"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="John"
+                          ref={nameref}
                         />
                       </div>
                     </div>
@@ -48,6 +93,7 @@ const Signup = () => {
                           type="text"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="johnsmith"
+                          ref={usernameref}
                         />
                       </div>
                     </div>
@@ -65,6 +111,7 @@ const Signup = () => {
                           type="email"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="johnsmith@example.com"
+                          ref={emailref}
                         />
                       </div>
                     </div>
@@ -82,10 +129,12 @@ const Signup = () => {
                           type="password"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="************"
+                          ref={passwordref}
                         />
                       </div>
                     </div>
                   </div>
+                  
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mb-12">
                       <label htmlFor="" className="text-xs font-semibold px-1">
@@ -100,10 +149,11 @@ const Signup = () => {
                           type="otp"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="Enter OTP"
+                          ref={otpref}
                         />
                         </div>
                         <div className="w-2/3 flex justify-end">
-                            <button className="ml-5 bg-indigo-500 text-sm hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Send OTP</button>
+                            <button onClick={handleOtp} className="ml-5 bg-indigo-500 text-sm hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Send OTP</button>
                         </div>
                       </div>
                       
@@ -112,7 +162,7 @@ const Signup = () => {
                   </div>
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mb-5">
-                      <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                      <button onClick={handleClick} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                         REGISTER NOW
                       </button>
                     </div>
