@@ -40,7 +40,7 @@ const UserLinks = () => {
           },
         },
       }}
-      src={Monkey} className='w-56 md:w-80 mx-auto'/>
+      src={Monkey} className='w-56 mt-60 md:mt-12 md:w-80 mx-auto'/>
       <motion.h1
        animate={["initial"]}
        variants={{
