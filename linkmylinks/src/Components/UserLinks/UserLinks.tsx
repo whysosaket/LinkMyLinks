@@ -1,27 +1,37 @@
 import LinkItem from './UserLinkItem';
 import LinkContext from '../../context/links/linkContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Monkey from "../../assets/404monkey.webp";
 import {motion} from "framer-motion";
+import Loading from '../Loading';
 
 const UserLinks = () => {
   const contextLink = useContext(LinkContext);
   const { links, clearLinks, getUserLinks } = contextLink;
 
   const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
 
+  const handleDataLoading = async (username: string)=>{
+      setLoading(true);
+      await getUserLinks(username);
+      setLoading(false);
+  }
 
   useEffect(() => {
     let username = searchParams.get("u");
     clearLinks();
-    if(username!==null||username!==undefined){
-      getUserLinks(username);
+    if(username!=null||username!=undefined){
+      handleDataLoading(username)
     }
     return clearLinks();
     // eslint-disable-next-line
   }, []);
+
   return (
+    <>
+    {loading&&<Loading />}
     <div className='flex flex-col justify-center'>
       {links.length<=0?
       <div className='my-4 md:my-12'>
@@ -70,6 +80,7 @@ const UserLinks = () => {
         </>
     }
     </div>
+    </>
   )
 }
 
