@@ -97,6 +97,8 @@ const LinkState = (props: any) => {
   // Edit a note
   const editLink = async (_id: string, title: string, linkaddress: string, list: string, isPublic: boolean) => {
     // API call
+    try{
+    props.setProgress(30);
     const response = await fetch(`${host}/api/link/updatelink/${_id}`, {
       method: 'PUT', 
       headers: {
@@ -105,15 +107,23 @@ const LinkState = (props: any) => {
       },
       body: JSON.stringify({title, linkaddress, list, isPublic}) 
     });
-
+    props.setProgress(60);
     const json = await response.json();
+    props.setProgress(80);
     if(json.success){
       updateAlert(json.info, "primary");
+      return true;
     }else{
       updateAlert(json.error, "danger");
+      return false;
     }
-
-    getLinks();
+    }catch(e){
+      console.log(e);
+      return false;
+    }finally{
+      getLinks();
+      props.setProgress(100);
+    }
   };
 
 

@@ -1,19 +1,29 @@
 import { useRef, useState } from "react";
 
-const AddLinkModal = (props: any) => {
+const EditLinkModal = (props: any) => {
 
     const nameRef = useRef<HTMLInputElement>(null);
     const linkRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLInputElement>(null);
     const isPublicRef = useRef<HTMLInputElement>(null);
+    const editLink = props.editLink;
 
-    const handleClick = ()=>{
+    const handleClick = async ()=>{
         const name_ = nameRef.current?.value;
-        const link = linkRef.current?.value;
+        let link = linkRef.current?.value;
         const list = listRef.current?.value;
         const isPublic = isPublicRef.current?.checked;
-        console.log(name_, link, list, isPublic);
-        return;
+        const _id = props._id;
+
+        if (name_ === "" || !link || list === "" || _id === "") return;
+        if (!link.startsWith("http")) {
+            link = "https://" + link;
+        }
+
+        const res = await editLink(_id, name_, link, list, isPublic);
+        if(res){
+          handleClose();
+        }
     }
 
 
@@ -24,7 +34,7 @@ const AddLinkModal = (props: any) => {
   return (
     <div
       className={`
-        bg-gray-900 backdrop-blur-sm shadow-lg bg-opacity-30 z-50 min-h-screen min-w-full fixed top-0 flex items-center justify-center`}
+        bg-gray-900 backdrop-blur-sm shadow-lg bg-opacity-30 z-50 min-h-screen min-w-full fixed left-0 right-0 top-0 flex items-center justify-center`}
     >
       <div role="status" className="flex justify-center">
         <div
@@ -75,6 +85,7 @@ const AddLinkModal = (props: any) => {
                       name="name"
                       id="name"
                       ref={nameRef}
+                      defaultValue={props.title}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       placeholder="Link Name"
                     />
@@ -92,6 +103,7 @@ const AddLinkModal = (props: any) => {
                       id="password"
                       placeholder="https://"
                       ref={linkRef}
+                      defaultValue={props.linkaddress}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     />
                   </div>
@@ -108,6 +120,7 @@ const AddLinkModal = (props: any) => {
                       id="list"
                       placeholder="Default"
                       ref={listRef}
+                      defaultValue={props.list}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     />
                   </div>
@@ -119,6 +132,7 @@ const AddLinkModal = (props: any) => {
                           type="checkbox"
                           defaultValue=""
                           ref={isPublicRef}
+                          defaultChecked={props.isPublic}
                           className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                         />
                       </div>
@@ -147,4 +161,4 @@ const AddLinkModal = (props: any) => {
   );
 };
 
-export default AddLinkModal;
+export default EditLinkModal;

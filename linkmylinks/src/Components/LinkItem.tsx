@@ -8,14 +8,16 @@ import {
 import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import LinkContext from "../context/links/linkContext";
+import EditLinkModal from "./Modals/EditLinkModal";
 
 const LinkItem = (props: {delay: number, link: any}) => {
 
-  const {deleteLink} = useContext(LinkContext);
+  const {deleteLink, editLink} = useContext(LinkContext);
 
   const linkaddress = props.link.linkaddress;
   const isPublic = props.link.public;
   const title = props.link.title;
+  const list = props.link.list;
   const _id = props.link._id;
 
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -40,7 +42,15 @@ const LinkItem = (props: {delay: number, link: any}) => {
     },2500)
   }
 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  
+  const handleEdit = ()=>{
+      setIsAddModalOpen(true);
+  }
+
   return (
+    <>
+    {isAddModalOpen&&<EditLinkModal editLink={editLink} setIsAddModalOpen={setIsAddModalOpen} _id={_id} title={title} linkaddress={linkaddress} list={list} isPublic={isPublic} />}
     <motion.div
       initial={{ y: 500, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -72,10 +82,12 @@ const LinkItem = (props: {delay: number, link: any}) => {
             size={"1.3rem"}
           />
           </button>
+          <button onClick={handleEdit}>
           <AiOutlineEdit
             className="mx-1 hover:text-yellow-600"
             size={"1.3rem"}
           />
+          </button>
           <button onClick={handleCopy}>
           <AiOutlineCopy
             className="mx-1 hover:text-green-500"
@@ -94,6 +106,7 @@ const LinkItem = (props: {delay: number, link: any}) => {
         </div>
       </div>
     </motion.div>
+    </>
   );
 };
 
