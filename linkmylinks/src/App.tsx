@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar"
 import Home from "./pages/Home";
 import _404 from "./pages/_404";
-// import Loading from "./Components/Loading";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
@@ -27,7 +26,7 @@ function App() {
                 height={3}
                 onLoaderFinished={() => setProgress(0)}
               />
-    {/* <Loading /> */}
+    
     <AlertState>
       <LinkState setProgress={setProgress}>
         <AuthState setProgress={setProgress}>

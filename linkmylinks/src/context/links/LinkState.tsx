@@ -9,7 +9,7 @@ const LinkState = (props: any) => {
 
   // This is for import Context alert
   const contextAlert = useContext(AlertContext);
-  const {updateAlert} = contextAlert;
+  const {updateAlert, setLoading} = contextAlert;
 
   // Get all links
   const getLinks = async () => {
@@ -17,6 +17,7 @@ const LinkState = (props: any) => {
       updateAlert("Please Login or Signup to Save or View Links", "warning");
       return;
     }
+    setLoading(true);
     // Doing a API CALL
     try{
     props.setProgress(30);
@@ -33,6 +34,9 @@ const LinkState = (props: any) => {
     props.setProgress(100);
     }catch(error){
       console.log(error);
+      props.setProgress(100);
+    }finally{
+      setLoading(false);
       props.setProgress(100);
     }
   };

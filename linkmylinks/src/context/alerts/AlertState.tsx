@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const AlertState = (props: any) => {
 
   const [linkValue, setLinkValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Set Alert
   const updateAlert = (text:string, type:string)=> {
@@ -20,7 +21,7 @@ const AlertState = (props: any) => {
   };
 
   return (
-    <AlertContext.Provider value={{ updateAlert, linkValue, setLinkValue }}>
+    <AlertContext.Provider value={{ updateAlert, linkValue, setLinkValue, loading, setLoading }}>
       {props.children}
     </AlertContext.Provider>
   );
