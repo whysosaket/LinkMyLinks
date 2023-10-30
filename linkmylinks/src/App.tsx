@@ -14,6 +14,7 @@ import AuthState from "./context/auth/AuthState.tsx";
 import AlertState from "./context/alerts/AlertState.tsx";
 import LinkState from "./context/links/LinkState.tsx";
 import Alert from "./Components/Alert.tsx";
+import User from "./pages/User.tsx";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/about" element={<About/>} />
+        <Route path="/user" element={<User/>} />
         <Route path="*" element={<_404 />} />
       </Routes>
       </Router>
