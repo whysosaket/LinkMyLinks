@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SignupImage from "../assets/signup.svg";
 import { motion } from "framer-motion";
-import { useContext, useState, useRef } from "react";
+import { useContext, useRef } from "react";
 import AuthContext from "../context/auth/AuthContext";
 import AlertContext from "../context/alerts/alertContext";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ const Signup = () => {
   const {signup,sendOtp} = useContext(AuthContext);
   const {updateAlert} = useContext(AlertContext);
 
-  const [otpHidden, setOtpHidden] = useState(true);
   const navigate = useNavigate();
 
   // Creating refs to handle values
@@ -43,7 +42,6 @@ const Signup = () => {
       updateAlert("Please Enter an email to get OTP.","danger");
       return;
     }
-    setOtpHidden(false);
     sendOtp(email);
   }
 

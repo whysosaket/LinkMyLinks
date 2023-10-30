@@ -1,7 +1,10 @@
+import { useState } from "react";
 import AlertContext from "./alertContext";
 import { toast } from 'react-toastify';
 
 const AlertState = (props: any) => {
+
+  const [linkValue, setLinkValue] = useState("");
 
   // Set Alert
   const updateAlert = (text:string, type:string)=> {
@@ -17,7 +20,7 @@ const AlertState = (props: any) => {
   };
 
   return (
-    <AlertContext.Provider value={{ updateAlert}}>
+    <AlertContext.Provider value={{ updateAlert, linkValue, setLinkValue }}>
       {props.children}
     </AlertContext.Provider>
   );

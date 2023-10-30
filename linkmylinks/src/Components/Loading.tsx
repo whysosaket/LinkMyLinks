@@ -18,7 +18,7 @@ const Loading = () => {
     },[itemState]);
 
   return (
-    <div className="bg-gray-100 z-50 min-h-screen min-w-full absolute flex items-center justify-center">
+    <div className="bg-gray-100 z-50 min-h-screen min-w-full fixed top-0 flex items-center justify-center">
       <div role="status" className=" flex justify-center">
         {/* <span className="font-semibold">{items[itemState]}</span> */}
         <GlitchLogo text={items[itemState]} />

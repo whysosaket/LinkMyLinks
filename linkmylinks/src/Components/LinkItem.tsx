@@ -14,7 +14,6 @@ const LinkItem = (props: {delay: number, link: any}) => {
   const {deleteLink} = useContext(LinkContext);
 
   const linkaddress = props.link.linkaddress;
-  const list = props.link.list;
   const isPublic = props.link.public;
   const title = props.link.title;
   const _id = props.link._id;

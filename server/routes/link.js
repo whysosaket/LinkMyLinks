@@ -125,13 +125,14 @@ router.route("/addlink").post(
 
     try {
       // Saving body data into constants
-      const { title, list, linkaddress } = req.body;
+      const { title, list, linkaddress, public } = req.body;
 
       const link = await Link.create({
         user: req.user.id,
         title,
         linkaddress,
         list,
+        public
       });
 
       success = true;

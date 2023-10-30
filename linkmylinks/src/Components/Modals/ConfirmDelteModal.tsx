@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const ConfirmDelteModal = () => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    const handleOnClick = ()=>{
-        setIsOpen(true);
-    }
 
     const handleClose = ()=>{
       setIsOpen(false);

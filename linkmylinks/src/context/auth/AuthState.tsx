@@ -1,10 +1,8 @@
 import AuthContext from "./AuthContext";
 import { useContext } from "react";
-import {useNavigate} from 'react-router-dom';
 import AlertContext from '../alerts/alertContext';
 
 const AuthState = (props: any) => {
-  // const navigate = useNavigate();
 
   const contextAlert = useContext(AlertContext);
   const {updateAlert} = contextAlert;
@@ -25,7 +23,6 @@ const AuthState = (props: any) => {
     if(json.success){
       localStorage.setItem('lmltoken', json.authtoken);
       localStorage.setItem('username', json.username);
-      // navigate('/');
       updateAlert("Logged in as "+json.username, "success");
       return true;
     }else{

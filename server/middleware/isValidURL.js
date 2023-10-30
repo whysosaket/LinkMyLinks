@@ -7,7 +7,6 @@ validURL = (req, res, next)=>{
     }
     try {
         new URL(url);
-        console.log(url);
         next();
       } catch (err) {
         return res.status(401).send({error: "Link Validation Error!"})

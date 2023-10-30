@@ -30,7 +30,6 @@ const LinkState = (props: any) => {
     props.setProgress(60);
     const json = await response.json();
     if(json.success) setLinks(json.links);
-    console.log(json.links);
     props.setProgress(100);
     }catch(error){
       console.log(error);
@@ -41,10 +40,13 @@ const LinkState = (props: any) => {
 
   // Add a new Link
   const addLink = async (title: string, linkaddress: string, list: string, isPublic: boolean) => {
+    try{
+    props.setProgress(20);
     if(localStorage.getItem('lmltoken') === null) {
       updateAlert("Please Login First!", "danger");
-      return;
+      return false;
     }
+    props.setProgress(30);
     // Doing a API CALL
     const response = await fetch(`${host}/api/link/addlink`, {
       method: 'POST', 
@@ -54,14 +56,23 @@ const LinkState = (props: any) => {
       },
       body: JSON.stringify({title, linkaddress, list, public: isPublic})
     });
-
+    props.setProgress(60);
     const json = await response.json();
     if(json.success){
       updateAlert(json.info, "success");
+      return true;
     }else{
       updateAlert(json.error, "danger");
+      return false;
     }
-    getLinks();
+    }catch(e){
+      console.log(e);
+      return false;
+    }finally{
+      getLinks();
+      props.setProgress(100);
+    }
+    
   };
 
   // Delete a Link

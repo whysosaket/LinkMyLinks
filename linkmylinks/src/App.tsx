@@ -2,14 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar"
 import Home from "./pages/Home";
 import _404 from "./pages/_404";
-import Background from "./assets/background.svg"
 import Loading from "./Components/Loading";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 import About from "./pages/About";
-import ConfirmDelteModal from "./Components/Modals/ConfirmDelteModal";
-import AddLinkModal from "./Components/Modals/AddLinkModal";
+
 import LoadingBar from "react-top-loading-bar";
 import { useState } from "react";
 import AuthState from "./context/auth/AuthState.tsx";
@@ -29,8 +27,6 @@ function App() {
                 onLoaderFinished={() => setProgress(0)}
               />
     {/* <Loading /> */}
-    {/* <ConfirmDelteModal /> */}
-    {/* <AddLinkModal /> */}
     <AlertState>
       <LinkState setProgress={setProgress}>
         <AuthState setProgress={setProgress}>
