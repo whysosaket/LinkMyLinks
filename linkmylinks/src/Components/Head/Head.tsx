@@ -1,4 +1,3 @@
-import React from 'react'
 import './Head.css'
 
 const Head = () => {
