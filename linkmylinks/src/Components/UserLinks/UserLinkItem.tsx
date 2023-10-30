@@ -9,7 +9,7 @@ import EditLinkModal from "../Modals/EditLinkModal";
 
 const UserLinkItem = (props: {delay: number, link: any}) => {
 
-  const {deleteLink, editLink} = useContext(LinkContext);
+  const { editLink } = useContext(LinkContext);
 
   const linkaddress = props.link.linkaddress;
   const isPublic = props.link.public;
@@ -17,33 +17,11 @@ const UserLinkItem = (props: {delay: number, link: any}) => {
   const list = props.link.list;
   const _id = props.link._id;
 
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-
   const openInNewTab = (url:string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const handleCopy = ()=>{
-    // Copy the text inside the text field
-     navigator.clipboard.writeText(linkaddress);
-  }
-
-  const handleDeleteLink = ()=>{
-    deleteLink(_id);
-  }
-
-  const expandDelete = ()=>{
-    setIsDeleteOpen(true);
-    setTimeout(()=>{
-      setIsDeleteOpen(false);
-    },2500)
-  }
-
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  
-  const handleEdit = ()=>{
-      setIsAddModalOpen(true);
-  }
 
   return (
     <>
@@ -73,15 +51,6 @@ const UserLinkItem = (props: {delay: number, link: any}) => {
           </button>
         </div>
       
-      </div>
-      <div className={`my-auto ${isDeleteOpen?"block":"hidden"}`}>
-        <hr className="h-2 my-1" />
-        <h1 className="font-semibold text-sm">Are you sure?</h1>
-        <div className="flex justify-end text-white md:my-2">
-          <button onClick={handleDeleteLink} className="mx-2 md:mx-1 bg-red-500 border border-red-500 hover:text-red-500 hover:bg-transparent px-3 py-2 md:px-2 md:py-1 rounded-lg">
-            Delete
-          </button>
-        </div>
       </div>
     </motion.div>
     </>
