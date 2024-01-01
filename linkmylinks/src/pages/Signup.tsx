@@ -168,7 +168,7 @@ const Signup = () => {
                   <h1 className="text-center text-sm">Already have an account? <Link to="/login" className="text-indigo-600">Login</Link></h1>
                 </div>
               </motion.div>
-              <motion.div initial={{x: -500, opacity: 0}} animate={{x: 0, opacity: 1}} transition={{duration: 0.6}} className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
+              <motion.div initial={{x: -500,rotateY: 180, opacity: 0}} animate={{x: 0,rotateY: 0, opacity: 1}} transition={{duration: 0.6}} className="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
                 <img src={SignupImage} className="transform -scale-x-100" />
               </motion.div>
             </div>
